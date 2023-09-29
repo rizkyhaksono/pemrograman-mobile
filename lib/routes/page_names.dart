@@ -1,24 +1,22 @@
 class PageName {
+  // intro
+  static const splash = "/splash";
+
   // auth
   static const login = "/login";
-  static const splash = "/splash";
-  static const dashboard = "/dashboard";
-  static const about = "/about";
+  static const signUp = "/signup";
+
+  // content page
+  static const home = "/home";
+  static const recent = "/recent";
+  static const recommended = "/recommended";
 
   // navigation menu
-  static const home = "/home";
-  static const stock = "/stock";
+  static const dashboard = "/dashboard";
   static const profile = "/profile";
+  static const favorite = "/favorite";
+  static const movies = "/movies";
 
-  // detail
-  static const detail = "/detail";
-
-  // track order
-  static const trackorder = "/track-order";
-
-  // home menu
-  static const phaseorder = "/phase-order";
-  static const checkorder = "/check-order";
-  static const updateorder = "/update-order";
-  static const chartorder = "/chart-order";
+  // other
+  static const about = "/about";
 }
