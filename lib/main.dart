@@ -32,7 +32,7 @@ class _MainAppState extends State<MainApp> {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
-      locale: const Locale('en', 'EN'),
+      // locale: const Locale('en', 'EN'),
       routingCallback: (value) {
         SystemChrome.setSystemUIOverlayStyle(
             SystemUiOverlayStyle(statusBarColor: Resources.color.background));

@@ -1,14 +1,14 @@
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class MovieController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
-  List<String> categoryList = [
-    "Thriller",
-    "Drama",
-    "Horror",
-    "Fantasy",
-    "Action",
+  List<String> imageName = [
+    'Batman',
+    'The Last of Us',
+    '3000 of Longing',
+    'Alone',
+    'Gravity'
   ];
 
   List<String> imageList = [
@@ -19,7 +19,7 @@ class HomeController extends GetxController {
     "assets/images/poster5.jpg"
   ];
 
-  void handleCategorySelection(int index) {
+  void handleImageList(int index) {
     selectedIndex.value = index;
   }
 }

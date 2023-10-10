@@ -17,20 +17,26 @@ class SplashPage extends GetView<SplashController> {
             fit: FlexFit.tight,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Picvie",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.none,
-                        color: Resources.color.hightlight,
-                      ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    'assets/images/illustration.png',
+                    height: 200,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Picvie",
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontFamily: Resources.font.primaryFont,
+                      fontWeight: FontWeight.w700,
+                      decoration: TextDecoration.none,
+                      color: Resources.color.hightlight,
                     ),
                   ),
                 ),

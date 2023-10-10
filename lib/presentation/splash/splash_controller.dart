@@ -8,7 +8,7 @@ class SplashController extends GetxController {
     super.onReady();
 
     Future.delayed(const Duration(milliseconds: 3000), () {
-      Get.offAllNamed("/dashboard");
+      Get.offAllNamed("/login");
     });
   }
 }

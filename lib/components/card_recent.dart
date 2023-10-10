@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class CardRecent extends StatefulWidget {
   final String recentName;
+  final String imageName;
 
   const CardRecent({
     super.key,
     required this.recentName,
+    required this.imageName,
   });
 
   @override
@@ -25,34 +27,26 @@ class _CardRecentState extends State<CardRecent> {
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 14, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
       child: Container(
         width: width / 2,
         decoration: ShapeDecoration(
           color: Resources.color.darkGrey,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                widget.recentName,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontFamily: Resources.font.primaryFont,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              )
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              widget.imageName,
+              width: width / 4,
+            ),
+          ],
         ),
       ),
     );
