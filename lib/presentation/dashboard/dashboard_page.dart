@@ -1,6 +1,9 @@
 import 'package:demo_mobile/components/bottom_navbar.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_controller.dart';
+import 'package:demo_mobile/presentation/dashboard/favorites/favorite_page.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_page.dart';
+import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,9 +20,11 @@ class DashboardPage extends GetView<DashboardController> {
           body: SafeArea(
             child: IndexedStack(
               index: controller.tabIndex,
-              children: const [
+              children: [
                 HomePage(),
-                // Text("Ssd"),
+                MoviePage(),
+                FavoritePage(),
+                ProfilePage(),
               ],
             ),
           ),
@@ -33,10 +38,10 @@ class DashboardPage extends GetView<DashboardController> {
             type: BottomNavigationBarType.fixed,
             backgroundColor: Resources.color.background,
             landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
-            selectedLabelStyle: const TextStyle(
+            selectedLabelStyle: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w300,
-              fontFamily: 'Poppins',
+              fontFamily: Resources.font.primaryFont,
             ),
             elevation: 8,
             items: [

@@ -1,4 +1,14 @@
 // getx
+import 'package:demo_mobile/presentation/dashboard/favorites/favorite_binding.dart';
+import 'package:demo_mobile/presentation/dashboard/favorites/favorite_page.dart';
+import 'package:demo_mobile/presentation/dashboard/home/home_binding.dart';
+import 'package:demo_mobile/presentation/dashboard/home/home_page.dart';
+import 'package:demo_mobile/presentation/dashboard/movies/movie_binding.dart';
+import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
+import 'package:demo_mobile/presentation/login/login_binding.dart';
+import 'package:demo_mobile/presentation/login/login_page.dart';
 import 'package:get/get.dart';
 
 // page names
@@ -17,14 +27,49 @@ class PageRoutes {
       page: () => const SplashPage(),
       binding: SplashBinding(),
       transition: Transition.cupertino,
-      transitionDuration: const Duration(milliseconds: 250),
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: PageName.login,
+      page: () => const LoginPage(),
+      binding: LoginBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
     ),
     GetPage(
       name: PageName.dashboard,
       page: () => const DashboardPage(),
       binding: DashboardBinding(),
       transition: Transition.cupertino,
-      transitionDuration: const Duration(microseconds: 500),
-    )
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: PageName.home,
+      page: () => HomePage(),
+      binding: HomeBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: PageName.movies,
+      page: () => MoviePage(),
+      binding: MovieBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: PageName.favorite,
+      page: () => FavoritePage(),
+      binding: FavoriteBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: PageName.profile,
+      page: () => ProfilePage(),
+      binding: ProfileBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
+    ),
   ];
 }

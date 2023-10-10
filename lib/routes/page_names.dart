@@ -1,21 +1,22 @@
 class PageName {
-  // intro
+  // welcome
   static const splash = "/splash";
 
   // auth
   static const login = "/login";
   static const signUp = "/signup";
+  static const forget = '/recover';
 
   // content page
-  static const home = "/home";
+  static const dashboard = "/dashboard";
   static const recent = "/recent";
   static const recommended = "/recommended";
 
   // navigation menu
-  static const dashboard = "/dashboard";
-  static const profile = "/profile";
-  static const favorite = "/favorite";
+  static const home = "/home";
   static const movies = "/movies";
+  static const favorite = "/favorite";
+  static const profile = "/profile";
 
   // other
   static const about = "/about";
