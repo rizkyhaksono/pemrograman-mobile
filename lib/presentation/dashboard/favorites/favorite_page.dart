@@ -32,6 +32,21 @@ class FavoritePage extends GetView<FavoriteController> {
               ),
             ],
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Favorite is empty",
+                style: TextStyle(
+                  fontFamily: Resources.font.primaryFont,
+                  color: Colors.white,
+                  // fontSize: 32,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ],
       ),
     );

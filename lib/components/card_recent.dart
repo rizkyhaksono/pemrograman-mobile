@@ -29,7 +29,9 @@ class _CardRecentState extends State<CardRecent> {
     width = size.width;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+      padding: const EdgeInsets.only(
+        right: 10,
+      ),
       child: Container(
         width: width / 2,
         decoration: ShapeDecoration(
@@ -39,13 +41,22 @@ class _CardRecentState extends State<CardRecent> {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              widget.imageName,
-              width: width / 4,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                widget.imageName,
+                width: width / 1,
+                fit: BoxFit.fill,
+              ),
             ),
+            Text(
+              widget.recentName,
+            ),
+            SizedBox(
+              height: 5,
+            )
           ],
         ),
       ),
