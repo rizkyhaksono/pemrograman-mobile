@@ -1,10 +1,11 @@
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfilePage extends GetView<ProfileController> {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,32 +13,41 @@ class ProfilePage extends GetView<ProfileController> {
       backgroundColor: Resources.color.background,
       body: ListView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(
-          top: 32,
-          left: 20,
-          right: 20,
-        ),
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Profile",
-                style: TextStyle(
-                  fontFamily: Resources.font.primaryFont,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 32,
-                ),
+          Container(
+            padding: const EdgeInsets.only(
+              top: 40,
+              left: 20,
+              bottom: 20,
+            ),
+            child: Text(
+              "Profile",
+              style: TextStyle(
+                fontFamily: Resources.font.primaryFont,
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 32,
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //   Obx(
+              //   () => Image.network(
+              //     imageController.imageUrl.value,
+              //     width: 200,
+              //     height: 200,
+              //   ),
+              // ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Update the image URL when the button is pressed
+              //     imageController.setImageUrl(
+              //         "https://example.com/your_new_image.jpg");
+              //   },
+              //   child: Text("Update Image"),
+              // ),
               Container(
                 width: 150.0,
                 height: 150.0,
@@ -70,6 +80,72 @@ class ProfilePage extends GetView<ProfileController> {
             ),
             textAlign: TextAlign.center,
           ),
+          Container(
+            padding: const EdgeInsets.only(
+              top: 20,
+              left: 60,
+              right: 60,
+            ),
+            height: 70,
+            width: 40,
+            child: ElevatedButton(
+              onPressed: () {
+                if (kDebugMode) {
+                  print("test");
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Resources.color.hightlight,
+                side: BorderSide.none,
+                shape: const StadiumBorder(),
+              ),
+              child: Text(
+                "Edit Profile",
+                style: TextStyle(
+                  color: Resources.color.background,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ProfileMenuWidget(
+                title: "Setting",
+                icon: Icons.settings,
+                textColor: Resources.color.hightlight,
+                onPress: () {},
+              ),
+              ProfileMenuWidget(
+                title: "Billing Details",
+                icon: Icons.settings,
+                textColor: Resources.color.hightlight,
+                onPress: () {},
+              ),
+              ProfileMenuWidget(
+                title: "User Management",
+                icon: Icons.settings,
+                textColor: Resources.color.hightlight,
+                onPress: () {},
+              ),
+              ProfileMenuWidget(
+                title: "Information",
+                icon: Icons.settings,
+                textColor: Resources.color.hightlight,
+                onPress: () {},
+              ),
+              ProfileMenuWidget(
+                title: "Logout",
+                icon: Icons.settings,
+                textColor: Resources.color.hightlight,
+                onPress: () {},
+              ),
+            ],
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -81,29 +157,77 @@ class ProfilePage extends GetView<ProfileController> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            width: 300.0,
-            height: 300.0,
-            decoration: BoxDecoration(
-              color: Resources.color.darkGrey,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Column(
-              children: [
-                //
+                Text(
+                  "This app made by Rizky Haksono",
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class ProfileMenuWidget extends StatelessWidget {
+  const ProfileMenuWidget({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.onPress,
+    this.endIcon = true,
+    this.textColor,
+  });
+
+  final String title;
+  final IconData icon;
+  final VoidCallback onPress;
+  final bool endIcon;
+  final Color? textColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: onPress,
+      contentPadding: const EdgeInsets.only(
+        top: 10,
+        left: 20,
+        right: 20,
+        bottom: 10,
+      ),
+      leading: Container(
+        width: 40,
+        height: 49,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Resources.color.hightlight,
+        ),
+        child: Icon(
+          icon,
+          color: Resources.color.background,
+        ),
+      ),
+      title: Text(
+        title,
+        style: TextStyle(color: textColor),
+      ),
+      trailing: endIcon
+          ? Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Icon(
+                Icons.arrow_right,
+                color: Resources.color.hightlight,
+              ),
+            )
+          : null,
     );
   }
 }

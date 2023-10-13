@@ -119,7 +119,7 @@ class LoginPage extends GetView<LoginController> {
                   child: Center(
                     child: SizedBox(
                       width: 120,
-                      height: 56,
+                      height: 50,
                       child: ElevatedButton(
                         onPressed: () {
                           Get.offAndToNamed('/dashboard');

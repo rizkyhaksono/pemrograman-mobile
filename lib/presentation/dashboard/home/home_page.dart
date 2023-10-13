@@ -179,7 +179,7 @@ class HomePage extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 14, 0, 18),
             child: SizedBox(
-              height: height / 5,
+              height: height / 2.5,
               child: ListView.builder(
                 itemCount: controller.categoryList.length,
                 scrollDirection: Axis.horizontal,
@@ -237,7 +237,7 @@ class HomePage extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 14, 0, 18),
             child: SizedBox(
-              height: height / 5,
+              height: height / 2.5,
               child: ListView.builder(
                 itemCount: controller.categoryList.length,
                 scrollDirection: Axis.horizontal,

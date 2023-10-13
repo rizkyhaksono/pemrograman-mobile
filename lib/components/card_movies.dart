@@ -29,14 +29,17 @@ class _CardRecommendState extends State<CardRecommend> {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+        child: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                widget.imagePath,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  widget.imagePath,
+                  fit: BoxFit.fill,
+                ),
               ),
               const SizedBox(
                 height: 10,

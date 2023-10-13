@@ -33,7 +33,7 @@ class MoviePage extends GetView<MovieController> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
             child: SizedBox(
               height: 650,
               child: ListView.builder(
@@ -46,7 +46,8 @@ class MoviePage extends GetView<MovieController> {
                       final imageName = controller.imageName[index];
                       return GestureDetector(
                         onTap: () {
-                          controller.handleImageList(index);
+                          // controller.handleImageList(index);
+                          print("clicked");
                         },
                         child: CardRecommend(
                           imagePath: imageList,
