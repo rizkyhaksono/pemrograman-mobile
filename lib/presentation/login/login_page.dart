@@ -114,27 +114,28 @@ class LoginPage extends GetView<LoginController> {
                 const SizedBox(
                   height: 25,
                 ),
-                ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  child: Center(
-                    child: SizedBox(
-                      width: 120,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Get.offAndToNamed('/dashboard');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Resources.color.hightlight,
+                Container(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 120,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.offAndToNamed('/dashboard');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Resources.color.hightlight,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(
-                            color: Resources.color.background,
-                            fontSize: 15,
-                            fontFamily: Resources.font.primaryFont,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      ),
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: Resources.color.background,
+                          fontSize: 15,
+                          fontFamily: Resources.font.primaryFont,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),

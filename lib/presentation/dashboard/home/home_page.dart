@@ -184,17 +184,17 @@ class HomePage extends GetView<HomeController> {
                 itemCount: controller.categoryList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final categoryName = controller.categoryList[index];
+                  final movieName = controller.imageName[index];
                   final imageName = controller.imageList[index];
                   return GestureDetector(
                     onTap: () {
-                      // controller.handleCategorySelection(index);
-                      if (kDebugMode) {
-                        print("object");
-                      }
+                      controller.handleRecentSelection(index);
+                      // if (kDebugMode) {
+                      //   print("object");
+                      // }
                     },
                     child: CardRecent(
-                      recentName: categoryName,
+                      recentName: movieName,
                       imageName: imageName,
                     ),
                   );
@@ -242,17 +242,17 @@ class HomePage extends GetView<HomeController> {
                 itemCount: controller.categoryList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final categoryName = controller.categoryList[index];
+                  final movieName = controller.imageName[index];
                   final imageName = controller.imageList[index];
                   return GestureDetector(
                     onTap: () {
-                      // controller.handleCategorySelection(index);
+                      // controller.handleRecentSelection(index);
                       if (kDebugMode) {
                         print("object");
                       }
                     },
                     child: CardRecent(
-                      recentName: categoryName,
+                      recentName: movieName,
                       imageName: imageName,
                     ),
                   );
