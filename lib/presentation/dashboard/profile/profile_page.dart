@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 class ProfilePage extends GetView<ProfileController> {
   ProfilePage({super.key});
 
+  final ProfileController _profileController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,21 +35,6 @@ class ProfilePage extends GetView<ProfileController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //   Obx(
-              //   () => Image.network(
-              //     imageController.imageUrl.value,
-              //     width: 200,
-              //     height: 200,
-              //   ),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     // Update the image URL when the button is pressed
-              //     imageController.setImageUrl(
-              //         "https://example.com/your_new_image.jpg");
-              //   },
-              //   child: Text("Update Image"),
-              // ),
               Container(
                 width: 150.0,
                 height: 150.0,
@@ -121,8 +108,8 @@ class ProfilePage extends GetView<ProfileController> {
                 onPress: () {},
               ),
               ProfileMenuWidget(
-                title: "Billing Details",
-                icon: Icons.settings,
+                title: "Upload File",
+                icon: Icons.upload_file,
                 textColor: Resources.color.hightlight,
                 onPress: () {},
               ),
@@ -150,10 +137,10 @@ class ProfilePage extends GetView<ProfileController> {
             height: 20,
           ),
           Container(
-            width: 300.0,
-            height: 300.0,
+            width: Get.width,
+            height: 100.0,
             decoration: BoxDecoration(
-              color: Resources.color.darkGrey,
+              // color: Resources.color.darkGrey,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
@@ -162,7 +149,11 @@ class ProfilePage extends GetView<ProfileController> {
               children: [
                 Text(
                   "This app made by Rizky Haksono",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: Resources.font.primaryFont,
+                    fontSize: 14,
+                  ),
                 ),
               ],
             ),

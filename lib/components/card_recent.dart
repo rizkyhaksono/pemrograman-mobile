@@ -1,5 +1,6 @@
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CardRecent extends StatefulWidget {
   final String recentName;
@@ -35,7 +36,6 @@ class _CardRecentState extends State<CardRecent> {
       child: Container(
         width: width / 2,
         decoration: ShapeDecoration(
-          color: Resources.color.darkGrey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -47,12 +47,18 @@ class _CardRecentState extends State<CardRecent> {
               borderRadius: BorderRadius.circular(8.0),
               child: Image.asset(
                 widget.imageName,
-                width: width / 1,
+                width: Get.width,
                 fit: BoxFit.fill,
               ),
             ),
             Text(
               widget.recentName,
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: Resources.font.primaryFont,
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             SizedBox(
               height: 5,

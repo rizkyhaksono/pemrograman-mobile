@@ -24,7 +24,7 @@ class _CardRecommendState extends State<CardRecommend> {
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: Container(
         decoration: ShapeDecoration(
-          color: Resources.color.darkGrey,
+          // color: Resources.color.darkGrey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
