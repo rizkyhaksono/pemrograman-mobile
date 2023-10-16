@@ -3,15 +3,11 @@ import 'package:get/get.dart';
 class ProfileController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
-  RxString profilePicture = ''.obs;
+  RxBool isProficPicPathSet = false.obs;
+  RxString profilePicPath = "".obs;
 
-  RxString imageUrl = "".obs;
-
-  void setImageUrl(String newUrl) {
-    imageUrl.value = newUrl;
-  }
-
-  void changeProfilePicture(String newPicture) {
-    profilePicture.value = newPicture;
+  void setProfileImagePath(String path) {
+    profilePicPath.value = path;
+    isProficPicPathSet.value = true;
   }
 }
