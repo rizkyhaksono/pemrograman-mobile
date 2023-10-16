@@ -1,13 +1,21 @@
+import 'dart:io';
+
+import 'package:demo_mobile/components/profile_avatar.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends GetView<ProfileController> {
-  ProfilePage({super.key});
+  final File? pickedFile;
+  final ImagePicker? imagePicker = ImagePicker();
 
-  final ProfileController _profileController = Get.find();
+  ProfilePage({
+    super.key,
+    this.pickedFile,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +43,7 @@ class ProfilePage extends GetView<ProfileController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 150.0,
-                height: 150.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Resources.color.darkGrey,
-                    width: 3.0,
-                  ),
-                ),
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/images/profile.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+              ProfileAvatar(),
             ],
           ),
           const SizedBox(
@@ -115,19 +107,19 @@ class ProfilePage extends GetView<ProfileController> {
               ),
               ProfileMenuWidget(
                 title: "User Management",
-                icon: Icons.settings,
+                icon: Icons.manage_accounts,
                 textColor: Resources.color.hightlight,
                 onPress: () {},
               ),
               ProfileMenuWidget(
                 title: "Information",
-                icon: Icons.settings,
+                icon: Icons.info_rounded,
                 textColor: Resources.color.hightlight,
                 onPress: () {},
               ),
               ProfileMenuWidget(
                 title: "Logout",
-                icon: Icons.settings,
+                icon: Icons.logout_outlined,
                 textColor: Resources.color.hightlight,
                 onPress: () {},
               ),
