@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,6 +38,8 @@ class HomeController extends GetxController {
 
   void handleRecentSelection(int index) {
     var test = selectedRecent.value = index;
-    print(test);
+    if (kDebugMode) {
+      print(test);
+    }
   }
 }

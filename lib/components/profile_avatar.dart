@@ -96,7 +96,7 @@ class ProfileAvatar extends StatelessWidget {
                       color: Resources.color.hightlight,
                       size: 30,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       "Gallery",
                       style: TextStyle(
@@ -155,7 +155,7 @@ class ProfileAvatar extends StatelessWidget {
       return;
     }
 
-    pickedFile = File(pickedImage!.path);
+    pickedFile = File(pickedImage.path);
     _profileController.setProfileImagePath(pickedFile!.path);
 
     Get.back();

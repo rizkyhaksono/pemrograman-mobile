@@ -60,7 +60,7 @@ class _CardRecentState extends State<CardRecent> {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             )
           ],

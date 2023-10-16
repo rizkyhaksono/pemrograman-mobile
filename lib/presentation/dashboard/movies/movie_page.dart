@@ -1,6 +1,7 @@
 import 'package:demo_mobile/components/card_movies.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +48,9 @@ class MoviePage extends GetView<MovieController> {
                       return GestureDetector(
                         onTap: () {
                           // controller.handleImageList(index);
-                          print("clicked");
+                          if (kDebugMode) {
+                            print("clicked");
+                          }
                         },
                         child: CardRecommend(
                           imagePath: imageList,

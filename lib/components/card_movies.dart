@@ -29,32 +29,30 @@ class _CardRecommendState extends State<CardRecommend> {
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  widget.imagePath,
-                  fit: BoxFit.fill,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                widget.imagePath,
+                fit: BoxFit.fill,
               ),
-              const SizedBox(
-                height: 10,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.categoryName,
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: Resources.font.primaryFont,
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
               ),
-              Text(
-                widget.categoryName,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: Resources.font.primaryFont,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
