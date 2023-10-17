@@ -121,7 +121,9 @@ class ProfilePage extends GetView<ProfileController> {
                 title: "Logout",
                 icon: Icons.logout_outlined,
                 textColor: Resources.color.hightlight,
-                onPress: () {},
+                onPress: () {
+                  Get.offNamed('/login');
+                },
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,10 +11,8 @@ class FavoritePage extends GetView<FavoriteController> {
 
   @override
   Widget build(BuildContext context) {
-    // getting the orientation of the app
     orientation = MediaQuery.of(context).orientation;
 
-    // size of the screen
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
@@ -51,7 +50,6 @@ class FavoritePage extends GetView<FavoriteController> {
                   height: height / 1.3,
                   child: ListView.builder(
                     itemCount: controller.categoryList.length,
-                    // scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       final movieName = controller.imageName[index];
                       final imageName = controller.imageList[index];
