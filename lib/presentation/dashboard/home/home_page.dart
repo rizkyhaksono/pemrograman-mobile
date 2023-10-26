@@ -66,7 +66,17 @@ class HomePage extends GetView<HomeController> {
                   color: Resources.color.hightlight,
                 ),
                 onPressed: () {
-                  // Get.to(ProfilePage());
+                  showModalBottomSheet(
+                    context: context,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                      ),
+                    ),
+                    backgroundColor: Resources.color.background,
+                    builder: (context) => notifSheet(context),
+                  );
                   if (kDebugMode) {
                     print("notif clicked");
                   }
@@ -259,6 +269,387 @@ class HomePage extends GetView<HomeController> {
                 },
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget notifSheet(BuildContext context) {
+    return Container(
+      width: Get.width,
+      color: Resources.color.background,
+      height: Get.height,
+      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: 10,
+      ),
+      child: ListView(
+        children: [
+          Column(
+            children: [
+              Text(
+                "Choose Profile Photo",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Resources.color.hightlight,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('test');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Text(
+                "Choose Profile Photo",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Resources.color.hightlight,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('test');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Text(
+                "Choose Profile Photo",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Resources.color.hightlight,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('test');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Text(
+                "Choose Profile Photo",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Resources.color.hightlight,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('test');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Text(
+                "Choose Profile Photo",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Resources.color.hightlight,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('test');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Text(
+                "Choose Profile Photo",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Resources.color.hightlight,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("test");
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.image,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Gallery",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('test');
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.camera,
+                          color: Resources.color.hightlight,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Camera",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Resources.color.hightlight,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
         ],
       ),
