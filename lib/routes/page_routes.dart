@@ -1,4 +1,5 @@
 // getx
+import 'package:demo_mobile/components/movie_detail.dart';
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_page.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_binding.dart';
@@ -67,6 +68,13 @@ class PageRoutes {
     GetPage(
       name: PageName.profile,
       page: () => ProfilePage(),
+      binding: ProfileBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
+    ),
+    GetPage(
+      name: PageName.movieDetail,
+      page: () => MovieDetailPage(),
       binding: ProfileBinding(),
       transition: Transition.cupertino,
       transitionDuration: const Duration(seconds: 1),

@@ -48,6 +48,7 @@ class MoviePage extends GetView<MovieController> {
                       return GestureDetector(
                         onTap: () {
                           // controller.handleImageList(index);
+                          Get.toNamed('/movie_detail');
                           if (kDebugMode) {
                             print("clicked");
                           }

@@ -38,7 +38,7 @@ class FavoriteController extends GetxController {
   void handleRecentSelection(int index) {
     var test = selectedRecent.value = index;
     if (kDebugMode) {
-      print(test);
+      print("object: $test");
     }
   }
 }

@@ -15,6 +15,7 @@ class PageName {
   // navigation menu
   static const home = "/home";
   static const movies = "/movies";
+  static const movieDetail = "/movie_detail";
   static const favorite = "/favorite";
   static const profile = "/profile";
 

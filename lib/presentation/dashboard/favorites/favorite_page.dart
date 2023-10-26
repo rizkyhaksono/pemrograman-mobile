@@ -56,9 +56,6 @@ class FavoritePage extends GetView<FavoriteController> {
                       return GestureDetector(
                         onTap: () {
                           controller.handleRecentSelection(index);
-                          // if (kDebugMode) {
-                          //   print("object");
-                          // }
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(
