@@ -1,24 +1,31 @@
+// To parse this JSON data, do
+//
+//     final nowPlayModel = nowPlayModelFromJson(jsonString);
+
 import 'dart:convert';
 
-MovieDetail MovieDetailFromJson(String str) =>
-    MovieDetail.fromJson(json.decode(str));
+NowPlayModel nowPlayModelFromJson(String str) =>
+    NowPlayModel.fromJson(json.decode(str));
 
-String MovieDetailToJson(MovieDetail data) => json.encode(data.toJson());
+String nowPlayModelToJson(NowPlayModel data) => json.encode(data.toJson());
 
-class MovieDetail {
+class NowPlayModel {
+  Dates dates;
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  MovieDetail({
+  NowPlayModel({
+    required this.dates,
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory MovieDetail.fromJson(Map<String, dynamic> json) => MovieDetail(
+  factory NowPlayModel.fromJson(Map<String, dynamic> json) => NowPlayModel(
+        dates: Dates.fromJson(json["dates"]),
         page: json["page"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
@@ -27,10 +34,33 @@ class MovieDetail {
       );
 
   Map<String, dynamic> toJson() => {
+        "dates": dates.toJson(),
         "page": page,
         "results": List<dynamic>.from(results.map((x) => x.toJson())),
         "total_pages": totalPages,
         "total_results": totalResults,
+      };
+}
+
+class Dates {
+  DateTime maximum;
+  DateTime minimum;
+
+  Dates({
+    required this.maximum,
+    required this.minimum,
+  });
+
+  factory Dates.fromJson(Map<String, dynamic> json) => Dates(
+        maximum: DateTime.parse(json["maximum"]),
+        minimum: DateTime.parse(json["minimum"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "maximum":
+            "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
+        "minimum":
+            "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
       };
 }
 

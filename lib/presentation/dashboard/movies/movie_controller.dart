@@ -1,4 +1,5 @@
-import 'package:demo_mobile/utils/models/movie_detail.dart';
+import 'package:demo_mobile/models/nowplaying_movie.dart';
+import 'package:demo_mobile/models/toprated_movie.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -26,8 +27,8 @@ class MovieController extends GetxController {
     selectedIndex.value = index;
   }
 
-  static const String _baseUrl = 'https://api.themoviedb.org/3/discover/movie';
-  static const String _apiKey = 'https://api.themoviedb.org/3/discover/movie';
+  static const String _baseUrl = 'https://api.themoviedb.org/3/';
+  static const String _apiKey = '8ee16750c566b88be3d29a700cff3e73';
 
   var isLoading = false.obs;
   var hasError = false.obs;
@@ -37,26 +38,89 @@ class MovieController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchTodos();
+    getcomingsoon();
+    getup();
+    gettop();
   }
 
-  Future<void> fetchTodos() async {
-    isLoading.value = true;
-    // try {
-    //   final response = await http.get(Uri.parse(_baseUrl));
-    //   if (response.statusCode == 200) {
-    //     final data = json.decode(response.body);
-    //     todo.value = Todo.fromJson(data);
-    //     hasData.value = true;
-    //   } else {
-    //     hasError.value = true;
-    //     errorMessage.value = 'Failed to load data';
-    //   }
-    // } catch (error) {
-    //   hasError.value = true;
-    //   errorMessage.value = error.toString();
-    // } finally {
-    //   isLoading.value = false;
-    // }
+  late NowPlayModel now_soon;
+  String url =
+      "${_baseUrl}movie/now_playing?language=en-US&page=1&api_key=$_apiKey";
+  getcomingsoon() async {
+    try {
+      isLoading(true);
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        print(result);
+        now_soon = NowPlayModel.fromJson(result);
+
+        // ignore: avoid_print
+        print("is recived");
+      } else {
+        isLoading(false);
+        // ignore: avoid_print
+        print("is not recived");
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      printError(info: "Error");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  late NowPlayModel up_soon;
+  String url2 =
+      "${_baseUrl}movie/upcoming?language=en-US&page=1&api_key=$_apiKey";
+  getup() async {
+    try {
+      isLoading(true);
+      final response = await http.get(Uri.parse(url2));
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        print(result);
+        up_soon = NowPlayModel.fromJson(result);
+
+        // ignore: avoid_print
+        print("is recived");
+      } else {
+        isLoading(false);
+        // ignore: avoid_print
+        print("is not recived");
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      printError(info: "Error");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  late Top10Model top_soon;
+  String url3 =
+      "${_baseUrl}trending/tv/day?language=en-US&page=1&api_key=$_apiKey";
+  gettop() async {
+    try {
+      isLoading(true);
+      final response = await http.get(Uri.parse(url3));
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        print(result);
+        top_soon = Top10Model.fromJson(result);
+
+        // ignore: avoid_print
+        print("is at the time recived");
+      } else {
+        isLoading(false);
+        // ignore: avoid_print
+        print("is not recived");
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      printError(info: "Error");
+    } finally {
+      isLoading(false);
+    }
   }
 }
