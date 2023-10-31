@@ -25,7 +25,7 @@ class MoviePage extends GetView<MovieController> {
           Row(
             children: [
               Text(
-                "Movies",
+                "Movies Latest",
                 style: TextStyle(
                   fontFamily: Resources.font.primaryFont,
                   color: Colors.white,

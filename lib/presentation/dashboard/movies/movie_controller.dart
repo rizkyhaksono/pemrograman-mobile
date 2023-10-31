@@ -20,37 +20,7 @@ class MovieController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    await getcomingsoon();
     await getup();
-    await gettop();
-  }
-
-  late NowPlayModel nowSoon;
-  String url =
-      "${BaseAPI.baseUrl}movie/now_playing?language=en-US&page=1&api_key=${BaseAPI.apiKey}";
-
-  getcomingsoon() async {
-    try {
-      isLoading(true);
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        var result = jsonDecode(response.body);
-        print(result);
-        nowSoon = NowPlayModel.fromJson(result);
-
-        // ignore: avoid_print
-        print("is recived");
-      } else {
-        isLoading(false);
-        // ignore: avoid_print
-        print("is not recived");
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      printError(info: "Error");
-    } finally {
-      isLoading(false);
-    }
   }
 
   late NowPlayModel upSoon;
@@ -67,33 +37,6 @@ class MovieController extends GetxController {
 
         // ignore: avoid_print
         print("is recived");
-      } else {
-        isLoading(false);
-        // ignore: avoid_print
-        print("is not recived");
-      }
-    } catch (e) {
-      // ignore: avoid_print
-      printError(info: "Error");
-    } finally {
-      isLoading(false);
-    }
-  }
-
-  late Top10Model topSoon;
-  String url3 =
-      "${BaseAPI.baseUrl}trending/tv/day?language=en-US&page=1&api_key=${BaseAPI.apiKey}";
-  gettop() async {
-    try {
-      isLoading(true);
-      final response = await http.get(Uri.parse(url3));
-      if (response.statusCode == 200) {
-        var result = jsonDecode(response.body);
-        print(result);
-        topSoon = Top10Model.fromJson(result);
-
-        // ignore: avoid_print
-        print("is at the time recived");
       } else {
         isLoading(false);
         // ignore: avoid_print
