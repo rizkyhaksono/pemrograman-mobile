@@ -10,7 +10,7 @@ class MoviePage extends GetView<MovieController> {
 
   @override
   Widget build(BuildContext context) {
-    final totalData = controller.up_soon.results.map((e) => e.backdropPath);
+    final totalData = controller.upSoon.results.map((e) => e.backdropPath);
     final totalDataMovies = totalData.toList();
     return Scaffold(
       backgroundColor: Resources.color.background,
@@ -44,10 +44,10 @@ class MoviePage extends GetView<MovieController> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   final dataImage =
-                      controller.up_soon.results.map((e) => e.backdropPath);
+                      controller.upSoon.results.map((e) => e.backdropPath);
                   final dataArray = dataImage.toList();
                   final titleApi =
-                      controller.up_soon.results.map((e) => e.title).toList();
+                      controller.upSoon.results.map((e) => e.title).toList();
 
                   return GestureDetector(
                     onTap: () {
@@ -60,7 +60,10 @@ class MoviePage extends GetView<MovieController> {
                       children: [
                         Image.network(
                             "https://image.tmdb.org/t/p/original${dataArray[index]}"),
-                        Text(titleApi[index]),
+                        Text(
+                          titleApi[index],
+                          style: TextStyle(color: Resources.color.hightlight),
+                        ),
                       ],
                     ),
                   );

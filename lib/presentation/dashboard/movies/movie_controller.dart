@@ -1,5 +1,6 @@
 import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/models/toprated_movie.dart';
+import 'package:demo_mobile/utils/apis/api.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -10,9 +11,6 @@ class MovieController extends GetxController {
   void handleImageList(int index) {
     selectedIndex.value = index;
   }
-
-  static const String _baseUrl = 'https://api.themoviedb.org/3/';
-  static const String _apiKey = '8ee16750c566b88be3d29a700cff3e73';
 
   var isLoading = false.obs;
   var hasError = false.obs;
@@ -27,9 +25,9 @@ class MovieController extends GetxController {
     await gettop();
   }
 
-  late NowPlayModel now_soon;
+  late NowPlayModel nowSoon;
   String url =
-      "${_baseUrl}movie/now_playing?language=en-US&page=1&api_key=$_apiKey";
+      "${BaseAPI.baseUrl}movie/now_playing?language=en-US&page=1&api_key=${BaseAPI.apiKey}";
 
   getcomingsoon() async {
     try {
@@ -38,7 +36,7 @@ class MovieController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         print(result);
-        now_soon = NowPlayModel.fromJson(result);
+        nowSoon = NowPlayModel.fromJson(result);
 
         // ignore: avoid_print
         print("is recived");
@@ -55,9 +53,9 @@ class MovieController extends GetxController {
     }
   }
 
-  late NowPlayModel up_soon;
+  late NowPlayModel upSoon;
   String url2 =
-      "${_baseUrl}movie/upcoming?language=en-US&page=1&api_key=$_apiKey";
+      "${BaseAPI.baseUrl}movie/upcoming?language=en-US&page=1&api_key=${BaseAPI.apiKey}";
   getup() async {
     try {
       isLoading(true);
@@ -65,7 +63,7 @@ class MovieController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         print(result);
-        up_soon = NowPlayModel.fromJson(result);
+        upSoon = NowPlayModel.fromJson(result);
 
         // ignore: avoid_print
         print("is recived");
@@ -82,9 +80,9 @@ class MovieController extends GetxController {
     }
   }
 
-  late Top10Model top_soon;
+  late Top10Model topSoon;
   String url3 =
-      "${_baseUrl}trending/tv/day?language=en-US&page=1&api_key=$_apiKey";
+      "${BaseAPI.baseUrl}trending/tv/day?language=en-US&page=1&api_key=${BaseAPI.apiKey}";
   gettop() async {
     try {
       isLoading(true);
@@ -92,7 +90,7 @@ class MovieController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         print(result);
-        top_soon = Top10Model.fromJson(result);
+        topSoon = Top10Model.fromJson(result);
 
         // ignore: avoid_print
         print("is at the time recived");
