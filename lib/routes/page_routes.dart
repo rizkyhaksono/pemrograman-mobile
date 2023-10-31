@@ -53,7 +53,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.movies,
-      page: () => MoviePage(),
+      page: () => const MoviePage(),
       binding: MovieBinding(),
       transition: Transition.cupertino,
       transitionDuration: const Duration(seconds: 1),
@@ -74,8 +74,8 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.movieDetail,
-      page: () => MovieDetailPage(),
-      binding: ProfileBinding(),
+      page: () => const MovieDetailPage(),
+      binding: MovieBinding(),
       transition: Transition.cupertino,
       transitionDuration: const Duration(seconds: 1),
     ),

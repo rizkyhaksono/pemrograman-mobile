@@ -16,6 +16,7 @@ class DashboardBinding extends Bindings {
 
     // Movie
     Get.lazyPut(() => MovieController());
+    Get.put(() => MovieController());
 
     // Favorite
     Get.put(FavoriteController());

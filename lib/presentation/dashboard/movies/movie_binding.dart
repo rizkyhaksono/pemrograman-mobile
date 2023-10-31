@@ -5,5 +5,6 @@ class MovieBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => MovieController());
+    Get.put(() => MovieController());
   }
 }

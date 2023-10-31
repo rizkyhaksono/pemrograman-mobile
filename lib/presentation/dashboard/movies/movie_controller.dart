@@ -7,22 +7,6 @@ import 'dart:convert';
 class MovieController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
-  List<String> imageName = [
-    'Batman',
-    'The Last of Us',
-    '3000 of Longing',
-    'Alone',
-    'Gravity'
-  ];
-
-  List<String> imageList = [
-    "assets/images/poster1.png",
-    "assets/images/poster2.jpg",
-    "assets/images/poster3.jpeg",
-    "assets/images/poster4.jpg",
-    "assets/images/poster5.jpg"
-  ];
-
   void handleImageList(int index) {
     selectedIndex.value = index;
   }
@@ -36,11 +20,11 @@ class MovieController extends GetxController {
   var hasData = false.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    getcomingsoon();
-    getup();
-    gettop();
+    await getcomingsoon();
+    await getup();
+    await gettop();
   }
 
   late NowPlayModel now_soon;
