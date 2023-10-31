@@ -33,7 +33,7 @@ class MoviePage extends GetView<MovieController> {
           Row(
             children: [
               Text(
-                "Movies Latest",
+                "Movies",
                 style: TextStyle(
                   fontFamily: Resources.font.primaryFont,
                   color: Colors.white,
@@ -66,75 +66,84 @@ class MoviePage extends GetView<MovieController> {
                   //     controller.upSoon.results.map((e) => e.overview).toList();
 
                   return GestureDetector(
-                      onTap: () {
-                        Get.toNamed('/movie_detail');
-                        if (kDebugMode) {
-                          print("clicked");
-                        }
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Column(
-                                // crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.network(
-                                    "https://image.tmdb.org/t/p/original${dataArray[index]}",
-                                    width: double.infinity,
-                                  ),
-                                  SizedBox(height: 12.0),
-                                  Container(
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(20),
+                    onTap: () {
+                      Get.toNamed('/movie_detail');
+                      if (kDebugMode) {
+                        print("clicked");
+                      }
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 20),
+                          width: Get.width,
+                          height: 520,
+                          decoration: BoxDecoration(
+                              color: Resources.color.hightlight,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    child: Image.network(
+                                      "https://image.tmdb.org/t/p/original${dataArray[index]}",
+                                      fit: BoxFit.cover,
+                                      width: 330,
+                                      height: 400,
                                     ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 12),
-                                    child: Text(
-                                      titleApi[index],
-                                      style: TextStyle(
+                                  ),
+                                ),
+                                Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 12),
+                                  margin: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    titleApi[index],
+                                    style: TextStyle(
+                                        color: Resources.color.hightlight,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                SizedBox(height: 8.0),
+                                Container(
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        ratingApi[index].toString() + "/10",
+                                        style: TextStyle(
                                           color: Resources.color.hightlight,
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                  SizedBox(height: 8.0),
-                                  Container(
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 8),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.star,
-                                          color: Colors.yellow,
                                         ),
-                                        SizedBox(height: 8.0),
-                                        Text(
-                                          ratingApi[index].toString() + "/10",
-                                          style: TextStyle(
-                                            color: Resources.color.hightlight,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ));
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
             ),
