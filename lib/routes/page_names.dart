@@ -21,4 +21,5 @@ class PageName {
 
   // other
   static const about = "/about";
+  static const github = "/github";
 }

@@ -23,7 +23,7 @@ class MovieController extends GetxController {
     await getup();
   }
 
-  late NowPlayModel upSoon;
+  NowPlayModel? upSoon;
   String url2 =
       "${BaseAPI.baseUrl}movie/upcoming?language=en-US&page=1&api_key=${BaseAPI.apiKey}";
   getup() async {

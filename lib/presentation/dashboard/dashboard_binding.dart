@@ -10,12 +10,14 @@ class DashboardBinding extends Bindings {
   void dependencies() {
     // Dashboard
     Get.put(DashboardController());
+    // Get.lazyPut(() => DashboardController());
 
     // Home
     Get.put(HomeController());
+    // Get.lazyPut(() => HomeController());
 
     // Movie
-    Get.lazyPut(() => MovieController());
+    // Get.lazyPut(() => MovieController());
     Get.put(() => MovieController());
 
     // Favorite

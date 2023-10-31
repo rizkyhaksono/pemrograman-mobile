@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   final File? pickedFile;
@@ -103,11 +104,11 @@ class ProfilePage extends GetView<ProfileController> {
                 },
               ),
               ProfileMenuWidget(
-                title: "User Management",
+                title: "Github Account",
                 icon: Icons.manage_accounts,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("user management");
+                  Get.toNamed('/github');
                 },
               ),
               ProfileMenuWidget(

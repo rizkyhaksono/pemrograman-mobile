@@ -10,6 +10,8 @@ import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart'
 import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
 import 'package:demo_mobile/presentation/login/login_binding.dart';
 import 'package:demo_mobile/presentation/login/login_page.dart';
+import 'package:demo_mobile/presentation/web_view/web_binding.dart';
+import 'package:demo_mobile/presentation/web_view/web_page.dart';
 import 'package:get/get.dart';
 
 // page names
@@ -53,7 +55,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.movies,
-      page: () => const MoviePage(),
+      page: () => MoviePage(),
       binding: MovieBinding(),
       transition: Transition.cupertino,
       transitionDuration: const Duration(seconds: 1),
@@ -79,5 +81,12 @@ class PageRoutes {
       transition: Transition.cupertino,
       transitionDuration: const Duration(seconds: 1),
     ),
+    GetPage(
+      name: PageName.github,
+      page: () => const WebPage(),
+      binding: WebBinding(),
+      transition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 1),
+    )
   ];
 }

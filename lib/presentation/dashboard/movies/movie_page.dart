@@ -1,4 +1,4 @@
-import 'package:demo_mobile/components/card_movies.dart';
+import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/foundation.dart';
@@ -6,12 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoviePage extends GetView<MovieController> {
-  const MoviePage({super.key});
+  MoviePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final totalData = controller.upSoon.results.map((e) => e.backdropPath);
+    final totalData = controller.upSoon!.results.map((e) => e.backdropPath);
     final totalDataMovies = totalData.toList();
+
+    // final upSoonInit = controller.upSoon = NowPlayModel(
+    //     dates: Dates(maximum: DateTime.now(), minimum: DateTime.now()),
+    //     page: 1,
+    //     results: List.empty(),
+    //     totalPages: 1,
+    //     totalResults: 1);
+
     return Scaffold(
       backgroundColor: Resources.color.background,
       body: ListView(
@@ -44,10 +52,10 @@ class MoviePage extends GetView<MovieController> {
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   final dataImage =
-                      controller.upSoon.results.map((e) => e.backdropPath);
+                      controller.upSoon!.results.map((e) => e.backdropPath);
                   final dataArray = dataImage.toList();
                   final titleApi =
-                      controller.upSoon.results.map((e) => e.title).toList();
+                      controller.upSoon!.results.map((e) => e.title).toList();
 
                   return GestureDetector(
                     onTap: () {
