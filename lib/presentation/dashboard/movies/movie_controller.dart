@@ -46,6 +46,7 @@ class MovieController extends GetxController {
   late NowPlayModel now_soon;
   String url =
       "${_baseUrl}movie/now_playing?language=en-US&page=1&api_key=$_apiKey";
+
   getcomingsoon() async {
     try {
       isLoading(true);
