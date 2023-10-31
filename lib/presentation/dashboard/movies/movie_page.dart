@@ -44,7 +44,11 @@ class MoviePage extends GetView<MovieController> {
                   return Obx(
                     () {
                       final imageList = controller.imageList[index];
-                      final imageName = controller.imageName[index];
+                      final dataImage =
+                          controller.up_soon.results.map((e) => e.backdropPath);
+                      final dataArray = dataImage;
+                      late Iterable<String> titleApi =
+                          controller.up_soon.results.map((e) => e.title);
                       return GestureDetector(
                         onTap: () {
                           // controller.handleImageList(index);
@@ -54,8 +58,8 @@ class MoviePage extends GetView<MovieController> {
                           }
                         },
                         child: CardRecommend(
-                          imagePath: imageList,
-                          categoryName: imageName,
+                          imagePath: dataArray,
+                          categoryName: titleApi,
                           isSelected: controller.selectedIndex.toInt() == index,
                         ),
                       );
@@ -65,6 +69,16 @@ class MoviePage extends GetView<MovieController> {
               ),
             ),
           ),
+          // Text(controller.up_soon.results.map((e) => e.title.toString()).first),
+          // Text(controller.up_soon.results[1].posterPath.toString()),
+          Text(controller.up_soon.results.map((e) => e.title).toString()),
+          Text(
+              controller.up_soon.results.map((e) => e.backdropPath).toString()),
+          // Image.network("https://api.themoviedb.org/3" +
+          //     controller.up_soon.results[1].posterPath.toString() +
+          //     "&api_key=8ee16750c566b88be3d29a700cff3e73")
+          Image.network(
+              'https://image.tmdb.org/t/p/original//t5zCBSB5xMDKcDqe91qahCOUYVV.jpg')
         ],
       ),
     );
