@@ -11,7 +11,7 @@ class ProfileAvatar extends StatelessWidget {
   File? pickedFile;
   final ImagePicker imagePicker = ImagePicker();
 
-  final ProfileController _profileController = Get.find();
+  final ProfileController _profileController = Get.put(ProfileController());
 
   ProfileAvatar({
     super.key,
@@ -24,13 +24,23 @@ class ProfileAvatar extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Obx(
-          () => CircleAvatar(
-            backgroundImage: _profileController.isProficPicPathSet.value == true
-                ? FileImage(File(_profileController.profilePicPath.value))
-                    as ImageProvider
-                : AssetImage("assets/images/profile.jpg"),
-            radius: 80,
-          ),
+          () {
+            bool isImagePathAvailable =
+                _profileController.isProficPicPathSet.value;
+            String imagePath = _profileController.profilePicPath.value;
+
+            ImageProvider<Object>? backgroundImage;
+            if (isImagePathAvailable) {
+              backgroundImage = FileImage(File(imagePath));
+            } else {
+              backgroundImage = AssetImage("assets/images/profile.jpg");
+            }
+
+            return CircleAvatar(
+              radius: 80,
+              backgroundImage: backgroundImage,
+            );
+          },
         ),
         Positioned(
           bottom: 0,
@@ -87,7 +97,7 @@ class ProfileAvatar extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
-                  takePhoto(ImageSource.gallery);
+                  _profileController.takePhoto(ImageSource.gallery, pickedFile);
                 },
                 child: Column(
                   children: [
@@ -109,7 +119,7 @@ class ProfileAvatar extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  takePhoto(ImageSource.camera);
+                  _profileController.takePhoto(ImageSource.camera, pickedFile);
                 },
                 child: Column(
                   children: [
@@ -134,41 +144,5 @@ class ProfileAvatar extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<void> takePhoto(ImageSource source) async {
-    final pickedImage =
-        await imagePicker.pickImage(source: source, imageQuality: 100);
-
-    if (pickedImage == null) {
-      Get.snackbar(
-        "Image Pick Canceled",
-        "You canceled image selection",
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-
-      if (kDebugMode) {
-        print("Image pick operation canceled by the user.");
-      }
-
-      return;
-    }
-
-    pickedFile = File(pickedImage.path);
-    _profileController.setProfileImagePath(pickedFile!.path);
-
-    Get.back();
-
-    Get.snackbar(
-      "Image Pick Successfully",
-      "You success change image",
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-    );
-
-    if (kDebugMode) {
-      print(pickedFile);
-    }
   }
 }

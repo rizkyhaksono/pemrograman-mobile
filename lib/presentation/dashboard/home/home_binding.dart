@@ -9,6 +9,6 @@ class HomeBinding extends Bindings {
     Get.put(HomeController());
 
     // Movies
-    Get.put(MovieController());
+    Get.lazyPut(() => MovieController());
   }
 }

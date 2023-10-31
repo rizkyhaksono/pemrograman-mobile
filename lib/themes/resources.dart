@@ -13,6 +13,7 @@ class AppColors {
   // secondary colors
   Color hightlight = const Color(0xFFFFE0A2);
   Color darkGrey = const Color(0xFF646464);
+  Color blacky = Color.fromARGB(0, 44, 48, 48);
   Color gradient = const Color(0xFFc93146);
 }
 

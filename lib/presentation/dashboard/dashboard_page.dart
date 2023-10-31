@@ -22,7 +22,7 @@ class DashboardPage extends GetView<DashboardController> {
               index: controller.tabIndex,
               children: [
                 HomePage(),
-                const MoviePage(),
+                MoviePage(),
                 FavoritePage(),
                 ProfilePage(),
               ],

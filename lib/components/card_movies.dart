@@ -1,9 +1,11 @@
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CardRecommend extends StatefulWidget {
-  final String imagePath;
-  final String categoryName;
+  final Iterable<String> imagePath;
+  final Iterable<String> categoryName;
   final bool isSelected;
 
   const CardRecommend({
@@ -20,6 +22,7 @@ class CardRecommend extends StatefulWidget {
 class _CardRecommendState extends State<CardRecommend> {
   @override
   Widget build(BuildContext context) {
+    String categoryText = widget.categoryName.join(", ");
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: Container(
@@ -33,25 +36,16 @@ class _CardRecommendState extends State<CardRecommend> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                widget.imagePath,
-                fit: BoxFit.fill,
-              ),
-            ),
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(8.0),
+            //   child: Image.asset(
+            //     widget.imagePath,
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              widget.categoryName,
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: Resources.font.primaryFont,
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-              ),
-            )
           ],
         ),
       ),

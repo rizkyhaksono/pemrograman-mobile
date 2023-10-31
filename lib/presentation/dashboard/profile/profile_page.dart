@@ -62,15 +62,14 @@ class ProfilePage extends GetView<ProfileController> {
           Container(
             padding: const EdgeInsets.only(
               top: 20,
-              left: 60,
-              right: 60,
+              left: 120,
+              right: 120,
             ),
             height: 70,
-            width: 40,
             child: ElevatedButton(
               onPressed: () {
                 if (kDebugMode) {
-                  print("test");
+                  print("edit profile");
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -81,6 +80,8 @@ class ProfilePage extends GetView<ProfileController> {
               child: Text(
                 "Edit Profile",
                 style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                   color: Resources.color.background,
                 ),
               ),
@@ -97,31 +98,34 @@ class ProfilePage extends GetView<ProfileController> {
                 title: "Setting",
                 icon: Icons.settings,
                 textColor: Resources.color.hightlight,
-                onPress: () {},
-              ),
-              ProfileMenuWidget(
-                title: "Upload File",
-                icon: Icons.upload_file,
-                textColor: Resources.color.hightlight,
-                onPress: () {},
+                onPress: () {
+                  print("setting");
+                },
               ),
               ProfileMenuWidget(
                 title: "User Management",
                 icon: Icons.manage_accounts,
                 textColor: Resources.color.hightlight,
-                onPress: () {},
+                onPress: () {
+                  print("user management");
+                },
               ),
               ProfileMenuWidget(
                 title: "Information",
                 icon: Icons.info_rounded,
                 textColor: Resources.color.hightlight,
-                onPress: () {},
+                onPress: () {
+                  print("info");
+                },
               ),
               ProfileMenuWidget(
                 title: "Logout",
                 icon: Icons.logout_outlined,
                 textColor: Resources.color.hightlight,
-                onPress: () {},
+                onPress: () {
+                  print("log out");
+                  Get.offNamed('/login');
+                },
               ),
             ],
           ),
