@@ -207,6 +207,9 @@ class HomePage extends GetView<HomeController> {
                   final dataArray = dataImage?.toList();
                   final titleApi =
                       controller.nowSoon?.results.map((e) => e.title).toList();
+                  final ratingApi = controller.nowSoon!.results
+                      .map((e) => e.voteAverage)
+                      .toList();
                   return GestureDetector(
                     onTap: () {
                       controller.handleRecentSelection(index);
@@ -216,11 +219,78 @@ class HomePage extends GetView<HomeController> {
                     },
                     child: Column(
                       children: [
-                        Image.network(
-                            "https://image.tmdb.org/t/p/original${dataArray?[index]}"),
-                        Text(
-                          titleApi![index].toString(),
-                          style: TextStyle(color: Resources.color.hightlight),
+                        // Image.network(
+                        //     "https://image.tmdb.org/t/p/original${dataArray?[index]}"),
+                        // Text(
+                        //   titleApi![index].toString(),
+                        //   style: TextStyle(color: Resources.color.hightlight),
+                        // ),
+                        Container(
+                          margin: EdgeInsets.only(top: 25),
+                          width: Get.width,
+                          height: 530,
+                          decoration: BoxDecoration(
+                              color: Resources.color.hightlight,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    child: Image.network(
+                                      "https://image.tmdb.org/t/p/original${dataArray?[index]}",
+                                      fit: BoxFit.cover,
+                                      width: 330,
+                                      height: 400,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 12),
+                                  child: Text(
+                                    titleApi![index],
+                                    style: TextStyle(
+                                        color: Resources.color.hightlight,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                SizedBox(height: 8.0),
+                                Container(
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        ratingApi[index].toString() + "/10",
+                                        style: TextStyle(
+                                          color: Resources.color.hightlight,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -274,6 +344,9 @@ class HomePage extends GetView<HomeController> {
                   final dataArray = dataImage!.toList();
                   final titleApi =
                       controller.nowSoon?.results.map((e) => e.title).toList();
+                  final ratingApi = controller.nowSoon!.results
+                      .map((e) => e.voteAverage)
+                      .toList();
                   return GestureDetector(
                     onTap: () {
                       controller.handleRecentSelection(index);
@@ -283,11 +356,72 @@ class HomePage extends GetView<HomeController> {
                     },
                     child: Column(
                       children: [
-                        Image.network(
-                            "https://image.tmdb.org/t/p/original${dataArray[index]}"),
-                        Text(
-                          titleApi![index].toString(),
-                          style: TextStyle(color: Resources.color.hightlight),
+                        Container(
+                          margin: EdgeInsets.only(top: 25),
+                          width: Get.width,
+                          height: 530,
+                          decoration: BoxDecoration(
+                              color: Resources.color.hightlight,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Container(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    child: Image.network(
+                                      "https://image.tmdb.org/t/p/original${dataArray[index]}",
+                                      fit: BoxFit.cover,
+                                      width: 330,
+                                      height: 400,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 12),
+                                  child: Text(
+                                    titleApi![index],
+                                    style: TextStyle(
+                                        color: Resources.color.hightlight,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                SizedBox(height: 8.0),
+                                Container(
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      Text(
+                                        ratingApi[index].toString() + "/10",
+                                        style: TextStyle(
+                                          color: Resources.color.hightlight,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
