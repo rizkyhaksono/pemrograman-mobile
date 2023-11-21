@@ -31,7 +31,7 @@ class LoginPage extends GetView<LoginController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Log In',
+                  'Sign In',
                   style: TextStyle(
                     color: Resources.color.hightlight,
                     fontSize: 32,
@@ -43,7 +43,7 @@ class LoginPage extends GetView<LoginController> {
                   height: 20,
                 ),
                 TextField(
-                  // controller: _emailController,
+                  controller: controller.emailController,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Resources.color.hightlight,
@@ -79,7 +79,7 @@ class LoginPage extends GetView<LoginController> {
                   height: 30,
                 ),
                 TextField(
-                  // controller: _passController,
+                  controller: controller.passwordController,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Resources.color.hightlight,
@@ -114,32 +114,61 @@ class LoginPage extends GetView<LoginController> {
                 const SizedBox(
                   height: 25,
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    width: Get.width,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.offAndToNamed('/dashboard');
-                      },
+                Obx(
+                  () {
+                    return ElevatedButton(
+                      onPressed: controller.isLoading.value
+                          ? null
+                          : () {
+                              controller.loginUser(
+                                controller.emailController.text,
+                                controller.passwordController.text,
+                              );
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Resources.color.hightlight,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                          color: Resources.color.background,
-                          fontSize: 15,
-                          fontFamily: Resources.font.primaryFont,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
+                      child: controller.isLoading.value
+                          ? CircularProgressIndicator(
+                              color: Resources.color.hightlight,
+                            )
+                          : Container(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                width: Get.width,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: controller.isLoading.value
+                                      ? null
+                                      : () {
+                                          controller.loginUser(
+                                            controller.emailController.text,
+                                            controller.passwordController.text,
+                                          );
+                                        },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Resources.color.hightlight,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Sign In',
+                                    style: TextStyle(
+                                      color: Resources.color.background,
+                                      fontSize: 15,
+                                      fontFamily: Resources.font.primaryFont,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 15,

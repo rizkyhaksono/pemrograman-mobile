@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +16,13 @@ class ProfileController extends GetxController {
 
   File? pickedFile;
   final ImagePicker imagePicker = ImagePicker();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void logout() async {
+    await _auth.signOut();
+    Get.offAll("/login");
+  }
 
   void setProfileImagePath(String path) {
     profilePicPath.value = path;

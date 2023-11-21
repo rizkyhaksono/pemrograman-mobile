@@ -123,8 +123,7 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.logout_outlined,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("log out");
-                  Get.offNamed('/login');
+                  controller.logout();
                 },
               ),
             ],
@@ -136,7 +135,6 @@ class ProfilePage extends GetView<ProfileController> {
             width: Get.width,
             height: 100.0,
             decoration: BoxDecoration(
-              // color: Resources.color.darkGrey,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Column(
