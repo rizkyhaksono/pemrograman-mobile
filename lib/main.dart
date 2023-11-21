@@ -1,5 +1,6 @@
 // package flutter
 import 'package:demo_mobile/firebase_options.dart';
+import 'package:demo_mobile/presentation/auth/notification_handler.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ void main() async {
   );
 
   await Get.putAsync(() async => await SharedPreferences.getInstance());
+  await FirebaseMessagingHandler().initPushNotification();
   runApp(const MainApp());
 }
 
