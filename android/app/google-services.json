@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "505626434408",
+    "project_id": "picvie-mobile",
+    "storage_bucket": "picvie-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505626434408:android:aa8945a3c633ba2cdc14dd",
+        "android_client_info": {
+          "package_name": "com.example.demo_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505626434408-7fqhkj4b09vv9sbt6r9l1qf6r59fu74v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC81mCTBbUDMwL6nMXxi9BUBKe1thKFQII"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505626434408-7fqhkj4b09vv9sbt6r9l1qf6r59fu74v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,4 +22,5 @@ class PageName {
   // other
   static const about = "/about";
   static const github = "/github";
+  static const moviesWeb = "/movies-web";
 }

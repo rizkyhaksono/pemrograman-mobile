@@ -1,4 +1,3 @@
-import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/foundation.dart';
@@ -56,7 +55,8 @@ class MoviePage extends GetView<MovieController> {
 
                   return GestureDetector(
                     onTap: () {
-                      Get.toNamed('/movie_detail');
+                      // Get.toNamed('/movie_detail');
+                      Get.toNamed('/movies-web');
                       if (kDebugMode) {
                         print("clicked");
                       }

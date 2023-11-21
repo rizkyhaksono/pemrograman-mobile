@@ -8,13 +8,8 @@ class WebController extends GetxController {
     ..setBackgroundColor(const Color(0x00000000))
     ..loadRequest(Uri.parse('https://github.com/rizkyhaksono'));
 
-  var githubGerald = WebViewController()
+  var movieWeb = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(const Color(0x00000000))
-    ..loadRequest(Uri.parse('https://github.com/GeraldiNathan'));
-
-  var githubRafli = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(const Color(0x00000000))
-    ..loadRequest(Uri.parse('https://github.com/raflikharisma'));
+    ..loadRequest(Uri.parse('https://www.themoviedb.org/'));
 }

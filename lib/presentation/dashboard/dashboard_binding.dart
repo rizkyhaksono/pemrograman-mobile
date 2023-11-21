@@ -8,22 +8,10 @@ import 'package:get/get.dart';
 class DashboardBinding extends Bindings {
   @override
   void dependencies() {
-    // Dashboard
-    Get.put(DashboardController());
-    // Get.lazyPut(() => DashboardController());
-
-    // Home
-    Get.put(HomeController());
-    // Get.lazyPut(() => HomeController());
-
-    // Movie
-    // Get.lazyPut(() => MovieController());
-    Get.put(() => MovieController());
-
-    // Favorite
-    Get.put(FavoriteController());
-
-    // Profile
-    Get.put(ProfileController());
+    Get.lazyPut(() => DashboardController());
+    Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => MovieController());
+    Get.lazyPut(() => FavoriteController());
+    Get.lazyPut(() => ProfileController());
   }
 }

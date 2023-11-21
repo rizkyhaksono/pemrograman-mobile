@@ -1,9 +1,10 @@
 import 'package:demo_mobile/models/nowplaying_movie.dart';
-import 'package:demo_mobile/models/toprated_movie.dart';
 import 'package:demo_mobile/utils/apis/api.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class MovieController extends GetxController {
   RxInt selectedIndex = 0.obs;
@@ -22,6 +23,11 @@ class MovieController extends GetxController {
     super.onInit();
     await getup();
   }
+
+  var movieWeb = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setBackgroundColor(const Color(0x00000000))
+    ..loadRequest(Uri.parse('https://www.themoviedb.org/'));
 
   NowPlayModel? upSoon;
   String url2 =

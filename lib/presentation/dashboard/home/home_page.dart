@@ -214,17 +214,12 @@ class HomePage extends GetView<HomeController> {
                     onTap: () {
                       controller.handleRecentSelection(index);
                       if (kDebugMode) {
-                        print("object");
+                        // print(" sd");
+                        Get.toNamed('/movies-web');
                       }
                     },
                     child: Column(
                       children: [
-                        // Image.network(
-                        //     "https://image.tmdb.org/t/p/original${dataArray?[index]}"),
-                        // Text(
-                        //   titleApi![index].toString(),
-                        //   style: TextStyle(color: Resources.color.hightlight),
-                        // ),
                         Container(
                           margin: EdgeInsets.only(top: 25),
                           width: Get.width,
@@ -351,7 +346,8 @@ class HomePage extends GetView<HomeController> {
                     onTap: () {
                       controller.handleRecentSelection(index);
                       if (kDebugMode) {
-                        print("object");
+                        // print("object");
+                        Get.toNamed('/movies-web');
                       }
                     },
                     child: Column(

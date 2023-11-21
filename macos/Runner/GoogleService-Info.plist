@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>505626434408-oormjjs2g64b7lao74ekokj00bdorn8u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.505626434408-oormjjs2g64b7lao74ekokj00bdorn8u</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCWjamSbNa00ytgT3MuA7WulJq6_jncvIc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>505626434408</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.demoMobile.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>picvie-mobile</string>
+	<key>STORAGE_BUCKET</key>
+	<string>picvie-mobile.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:505626434408:ios:4a7cb8787411490fdc14dd</string>
+</dict>
+</plist>

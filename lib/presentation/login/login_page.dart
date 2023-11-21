@@ -117,7 +117,7 @@ class LoginPage extends GetView<LoginController> {
                 Container(
                   alignment: Alignment.center,
                   child: SizedBox(
-                    width: 120,
+                    width: Get.width,
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
@@ -150,7 +150,7 @@ class LoginPage extends GetView<LoginController> {
                     Text(
                       'Don’t have an account?',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: const Color.fromARGB(255, 175, 162, 135),
                         fontSize: 13,
                         fontFamily: Resources.font.primaryFont,
                         fontWeight: FontWeight.w500,
@@ -161,15 +161,13 @@ class LoginPage extends GetView<LoginController> {
                     ),
                     InkWell(
                       onTap: () {
-                        // widget.controller.animateToPage(1,
-                        //     duration: const Duration(milliseconds: 500),
-                        //     curve: Curves.ease);
+                        Get.toNamed("/signup");
                       },
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
                           color: Resources.color.hightlight,
-                          fontSize: 13,
+                          fontSize: 15,
                           fontFamily: Resources.font.primaryFont,
                           fontWeight: FontWeight.w500,
                         ),
