@@ -10,8 +10,8 @@ import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart'
 import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
-import 'package:demo_mobile/presentation/login/login_binding.dart';
-import 'package:demo_mobile/presentation/login/login_page.dart';
+import 'package:demo_mobile/presentation/auth/login/login_binding.dart';
+import 'package:demo_mobile/presentation/auth/login/login_page.dart';
 import 'package:demo_mobile/presentation/web_view/web_binding.dart';
 import 'package:demo_mobile/presentation/web_view/web_page.dart';
 import 'package:get/get.dart';
@@ -24,8 +24,8 @@ import 'package:demo_mobile/presentation/splash/splash_page.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_page.dart';
 import 'package:demo_mobile/presentation/splash/splash_binding.dart';
-import 'package:demo_mobile/presentation/sign_up/signup_binding.dart';
-import 'package:demo_mobile/presentation/sign_up/signup_page.dart';
+import 'package:demo_mobile/presentation/auth/sign_up/signup_binding.dart';
+import 'package:demo_mobile/presentation/auth/sign_up/signup_page.dart';
 
 class PageRoutes {
   static final pages = [

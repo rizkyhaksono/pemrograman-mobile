@@ -1,6 +1,5 @@
 import 'package:demo_mobile/components/card_category.dart';
-import 'package:demo_mobile/components/card_recent.dart';
-import 'package:demo_mobile/models/nowplaying_movie.dart';
+import 'package:demo_mobile/components/notification_bottom.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends GetView<HomeController> {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +15,14 @@ class HomePage extends GetView<HomeController> {
     final nowSoon = controller.nowSoon;
 
     if (nowSoon == null || nowSoon.results == null) {
-      // Handle the case where the data is not yet available
       return Scaffold(
         backgroundColor: Resources.color.background,
-        body: Center(
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       );
     }
 
-    // The 'nowSoon' variable has been initialized, you can safely use it.
     Iterable<int>? totalData = controller.nowSoon?.results.map((e) => e.id);
     List<int> totalDataTrending = totalData!.toList();
 
@@ -178,7 +175,9 @@ class HomePage extends GetView<HomeController> {
                 TextButton(
                   onPressed: () {
                     // Get.toNamed('/movies');
-                    print("See all");
+                    if (kDebugMode) {
+                      print("See all");
+                    }
                   },
                   child: Text(
                     "See all",
@@ -221,14 +220,14 @@ class HomePage extends GetView<HomeController> {
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 25),
+                          margin: const EdgeInsets.only(top: 25),
                           width: Get.width,
                           height: 530,
                           decoration: BoxDecoration(
                               color: Resources.color.hightlight,
                               borderRadius: BorderRadius.circular(20)),
                           child: Container(
-                            padding: EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Column(
                               children: [
                                 Center(
@@ -249,7 +248,7 @@ class HomePage extends GetView<HomeController> {
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 12),
                                   child: Text(
                                     titleApi![index],
@@ -258,24 +257,24 @@ class HomePage extends GetView<HomeController> {
                                         fontSize: 20),
                                   ),
                                 ),
-                                SizedBox(height: 8.0),
+                                const SizedBox(height: 8.0),
                                 Container(
                                   width: 120,
                                   decoration: BoxDecoration(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 8),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.star,
                                         color: Colors.yellow,
                                       ),
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                       Text(
-                                        ratingApi[index].toString() + "/10",
+                                        "${ratingApi[index]}/10",
                                         style: TextStyle(
                                           color: Resources.color.hightlight,
                                         ),
@@ -353,14 +352,14 @@ class HomePage extends GetView<HomeController> {
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 25),
+                          margin: const EdgeInsets.only(top: 25),
                           width: Get.width,
                           height: 530,
                           decoration: BoxDecoration(
                               color: Resources.color.hightlight,
                               borderRadius: BorderRadius.circular(20)),
                           child: Container(
-                            padding: EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Column(
                               children: [
                                 Center(
@@ -375,13 +374,13 @@ class HomePage extends GetView<HomeController> {
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                  margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
                                   height: 50,
                                   decoration: BoxDecoration(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 12),
                                   child: Text(
                                     titleApi![index],
@@ -390,24 +389,24 @@ class HomePage extends GetView<HomeController> {
                                         fontSize: 20),
                                   ),
                                 ),
-                                SizedBox(height: 8.0),
+                                const SizedBox(height: 8.0),
                                 Container(
                                   width: 120,
                                   decoration: BoxDecoration(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 8),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.star,
                                         color: Colors.yellow,
                                       ),
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                       Text(
-                                        ratingApi[index].toString() + "/10",
+                                        "${ratingApi[index]}/10",
                                         style: TextStyle(
                                           color: Resources.color.hightlight,
                                         ),
@@ -425,38 +424,6 @@ class HomePage extends GetView<HomeController> {
                 },
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget notifSheet(BuildContext context) {
-    return Container(
-      width: Get.width,
-      color: Resources.color.background,
-      height: Get.height,
-      padding: const EdgeInsets.all(16.0),
-      margin: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: 10,
-      ),
-      child: ListView(
-        children: [
-          Column(
-            children: [
-              Text(
-                "Notification",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Resources.color.hightlight,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-            ],
           ),
         ],
       ),

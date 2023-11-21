@@ -1,9 +1,9 @@
-import 'package:demo_mobile/presentation/login/login_controller.dart';
+import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends GetView<LoginController> {
+class LoginPage extends GetView<AuthController> {
   const LoginPage({Key? key}) : super(key: key);
 
   @override

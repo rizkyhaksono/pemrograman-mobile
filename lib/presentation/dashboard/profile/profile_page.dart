@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:demo_mobile/components/profile_avatar.dart';
+import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/foundation.dart';
@@ -11,6 +12,8 @@ import 'package:image_picker/image_picker.dart';
 class ProfilePage extends GetView<ProfileController> {
   final File? pickedFile;
   final ImagePicker? imagePicker = ImagePicker();
+
+  final AuthController _authController = Get.put(AuthController());
 
   ProfilePage({
     super.key,
@@ -123,7 +126,7 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.logout_outlined,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  controller.logout();
+                  _authController.logout();
                 },
               ),
             ],

@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 // page
 import 'package:demo_mobile/routes/page_names.dart';
 import 'package:demo_mobile/routes/page_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  await Get.putAsync(() async => await SharedPreferences.getInstance());
   runApp(const MainApp());
 }
 

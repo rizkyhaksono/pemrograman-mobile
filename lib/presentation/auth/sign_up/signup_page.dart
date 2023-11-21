@@ -1,9 +1,9 @@
-import 'package:demo_mobile/presentation/sign_up/signup_controller.dart';
+import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignUpPage extends GetView<SignUpController> {
+class SignUpPage extends GetView<AuthController> {
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
