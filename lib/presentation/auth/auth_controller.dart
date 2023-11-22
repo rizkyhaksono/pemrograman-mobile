@@ -9,7 +9,8 @@ class AuthController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isLoggedIn = false.obs;
-  RxBool obscureText = true.obs;
+  // RxBool obscureText = true.obs;
+  RxBool showPassword = true.obs;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -32,7 +33,10 @@ class AuthController extends GetxController {
   }
 
   void toggleObscureText() {
-    obscureText.value = !obscureText.value;
+    // showPassword.value = !showPassword.value;
+    // print("Before toggle: ${showPassword.value}");
+    showPassword.value = !showPassword.value;
+    print("After toggle: ${showPassword.value}");
   }
 
   Future<void> registerUser(String email, String password) async {

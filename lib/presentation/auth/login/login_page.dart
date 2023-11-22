@@ -78,35 +78,50 @@ class LoginPage extends GetView<AuthController> {
                 const SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: controller.passwordController,
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    color: Resources.color.hightlight,
-                    fontSize: 13,
-                    fontFamily: Resources.font.primaryFont,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 175, 162, 135),
-                      fontSize: 15,
+                Obx(
+                  () => TextField(
+                    controller: controller.passwordController,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Resources.color.hightlight,
+                      fontSize: 13,
                       fontFamily: Resources.font.primaryFont,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                     ),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(255, 134, 128, 115),
+                    obscureText: controller.showPassword.value,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      labelStyle: TextStyle(
+                        color: const Color.fromARGB(255, 175, 162, 135),
+                        fontSize: 15,
+                        fontFamily: Resources.font.primaryFont,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Resources.color.hightlight,
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Color.fromARGB(255, 134, 128, 115),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Resources.color.hightlight,
+                        ),
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          controller.showPassword.value
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Resources.color.hightlight,
+                        ),
+                        onPressed: () {
+                          controller.toggleObscureText();
+                        },
                       ),
                     ),
                   ),
@@ -131,42 +146,37 @@ class LoginPage extends GetView<AuthController> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
-                      child: controller.isLoading.value
-                          ? CircularProgressIndicator(
-                              color: Resources.color.hightlight,
-                            )
-                          : Container(
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          // Text or any other content
+                          Visibility(
+                            visible: !controller.isLoading.value,
+                            child: Container(
                               alignment: Alignment.center,
-                              child: SizedBox(
-                                width: Get.width,
-                                height: 50,
-                                child: ElevatedButton(
-                                  onPressed: controller.isLoading.value
-                                      ? null
-                                      : () {
-                                          controller.loginUser(
-                                            controller.emailController.text,
-                                            controller.passwordController.text,
-                                          );
-                                        },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Resources.color.hightlight,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    'Sign In',
-                                    style: TextStyle(
-                                      color: Resources.color.background,
-                                      fontSize: 15,
-                                      fontFamily: Resources.font.primaryFont,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                              child: Text(
+                                'Sign In',
+                                style: TextStyle(
+                                  color: Resources.color.background,
+                                  fontSize: 15,
+                                  fontFamily: Resources.font.primaryFont,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
+                          ),
+                          // Loading Indicator
+                          Visibility(
+                            visible: controller.isLoading.value,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: Resources
+                                    .color.hightlight, // Adjust color as needed
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
