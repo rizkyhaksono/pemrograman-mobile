@@ -242,7 +242,7 @@ class HomePage extends GetView<HomeController> {
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                  margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
                                   height: 50,
                                   decoration: BoxDecoration(
                                     color: Colors.black,

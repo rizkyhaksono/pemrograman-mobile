@@ -4,7 +4,6 @@ import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/models/toprated_movie.dart';
 import 'package:demo_mobile/utils/apis/api.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -56,15 +55,20 @@ class HomeController extends GetxController {
       final response = await http.get(Uri.parse(url3));
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        print(result);
+        if (kDebugMode) {
+          print(result);
+        }
         trendingMovie = Top10Model.fromJson(result);
 
-        // ignore: avoid_print
-        print("is at the time recived");
+        if (kDebugMode) {
+          print("is at the time recived");
+        }
       } else {
         isLoading(false);
-        // ignore: avoid_print
-        print("is not recived");
+
+        if (kDebugMode) {
+          print("is not recived");
+        }
       }
     } catch (e) {
       // ignore: avoid_print
@@ -82,18 +86,22 @@ class HomeController extends GetxController {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        print(result);
+        if (kDebugMode) {
+          print(result);
+        }
         nowSoon = NowPlayModel.fromJson(result);
 
-        // ignore: avoid_print
-        print("is recived");
+        if (kDebugMode) {
+          print("is recived");
+        }
       } else {
         isLoading(false);
-        // ignore: avoid_print
-        print("is not recived");
+
+        if (kDebugMode) {
+          print("is not recived");
+        }
       }
     } catch (e) {
-      // ignore: avoid_print
       printError(info: "Error");
     } finally {
       isLoading(false);

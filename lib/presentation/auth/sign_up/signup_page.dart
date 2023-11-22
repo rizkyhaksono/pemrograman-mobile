@@ -1,5 +1,6 @@
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -205,7 +206,9 @@ class SignUpPage extends GetView<AuthController> {
                         height: 30,
                       ),
                       onPressed: () {
-                        print("google clicked");
+                        if (kDebugMode) {
+                          print("google clicked");
+                        }
                       },
                     ),
                   ],

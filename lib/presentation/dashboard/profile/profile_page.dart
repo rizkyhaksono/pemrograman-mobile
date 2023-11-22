@@ -102,7 +102,9 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.settings,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("setting");
+                  if (kDebugMode) {
+                    print("setting");
+                  }
                 },
               ),
               ProfileMenuWidget(
@@ -118,7 +120,9 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.info_rounded,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("info");
+                  if (kDebugMode) {
+                    print("info");
+                  }
                 },
               ),
               ProfileMenuWidget(

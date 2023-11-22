@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,10 +34,10 @@ class AuthController extends GetxController {
   }
 
   void toggleObscureText() {
-    // showPassword.value = !showPassword.value;
-    // print("Before toggle: ${showPassword.value}");
     showPassword.value = !showPassword.value;
-    print("After toggle: ${showPassword.value}");
+    if (kDebugMode) {
+      print("After toggle: ${showPassword.value}");
+    }
   }
 
   Future<void> registerUser(String email, String password) async {

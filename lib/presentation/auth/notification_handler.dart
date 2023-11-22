@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Message received in background: ${message.notification?.title}');
+  if (kDebugMode) {
+    print('Message received in background: ${message.notification?.title}');
+  }
 }
 // notif fcm token
 // ezwxYa22Q_CF4FhdV6XCPi:APA91bFs9RoWE3gTWMsr7A7pxY4jZMppYhNvuUDu3zTxElUi6T4pEK7yLk77XbMpwUB6O8OJs2oS-eRBmBTzyf-3PXejIjolQ_7M2tPsHeaSPE0E_6vWA73DpYaBsoor3dcky2eweqvs
@@ -34,18 +37,24 @@ class FirebaseMessagingHandler {
       sound: true,
     );
 
-    print('User granted permission: ${settings.authorizationStatus}');
+    if (kDebugMode) {
+      print('User granted permission: ${settings.authorizationStatus}');
+    }
 
     //get token messaging
     _firebaseMessaging.getToken().then((token) {
-      print('FCM Token: $token');
+      if (kDebugMode) {
+        print('FCM Token: $token');
+      }
     });
 
     //handler terminated message
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       // print("terminatedNotification : ${message!.notification?.title}");
       if (message != null && message.notification != null) {
-        print("terminatedNotification : ${message.notification!.title}");
+        if (kDebugMode) {
+          print("terminatedNotification : ${message.notification!.title}");
+        }
       }
     });
 
@@ -70,13 +79,18 @@ class FirebaseMessagingHandler {
         ),
         payload: jsonEncode(message.toMap()),
       );
-      print(
-          'Message received while app is in foreground: ${message.notification?.title}');
+      if (kDebugMode) {
+        print(
+            'Message received while app is in foreground: ${message.notification?.title}');
+      }
     });
 
     //handler when open the message
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print('Message opened from notification: ${message.notification?.title}');
+      if (kDebugMode) {
+        print(
+            'Message opened from notification: ${message.notification?.title}');
+      }
     });
   }
 

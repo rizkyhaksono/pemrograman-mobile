@@ -6,7 +6,6 @@ import 'package:demo_mobile/presentation/dashboard/favorites/favorite_page.dart'
 import 'package:demo_mobile/presentation/dashboard/home/home_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_page.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_binding.dart';
-import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
@@ -52,14 +51,14 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.home,
-      page: () => HomePage(),
+      page: () => const HomePage(),
       binding: HomeBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: PageName.movies,
-      page: () => MoviePage(),
+      page: () => const MoviePage(),
       binding: MovieBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
@@ -94,7 +93,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.moviesWeb,
-      page: () => MovieWebPage(),
+      page: () => const MovieWebPage(),
       binding: MovieBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),

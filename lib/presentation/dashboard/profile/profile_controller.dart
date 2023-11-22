@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -50,12 +49,12 @@ class ProfileController extends GetxController {
       return;
     } else {
       final Directory appDirectory = await getApplicationCacheDirectory();
-      final String fileName = 'profile_image.png';
+      const String fileName = 'profile_image.png';
 
       setProfileImagePath(File(pickedImage.path).path);
       setStoredImagePath(
           localImage: await File(pickedImage.path)
-              .copy('${appDirectory.path}/${fileName}'));
+              .copy('${appDirectory.path}/$fileName'));
 
       Get.back();
       Get.snackbar(

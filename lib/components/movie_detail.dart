@@ -30,26 +30,13 @@ class MovieDetailPage extends GetView<MovieController> {
                   onPressed: () {
                     Get.back();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.white,
                   ),
                 ),
               ),
-              // Positioned(
-              //   top: 5,
-              //   left: 10,
-              //   child: IconButton(
-              //     onPressed: () {
-              //       print("favorited");
-              //     },
-              //     icon: Icon(
-              //       Icons.favorite,
-              //       color: Colors.white,
-              //     ),
-              //   ),
-              // ),
-              Positioned(
+              const Positioned(
                 bottom: 10,
                 child: Text(
                   "Overview",
@@ -62,8 +49,8 @@ class MovieDetailPage extends GetView<MovieController> {
               ),
             ],
           ),
-          SizedBox(height: 10),
-          Text("Hai")
+          const SizedBox(height: 10),
+          const Text("Hai")
         ],
       ),
     ));

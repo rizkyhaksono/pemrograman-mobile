@@ -1,5 +1,6 @@
 import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/utils/apis/api.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -38,7 +39,9 @@ class MovieController extends GetxController {
       final response = await http.get(Uri.parse(url2));
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        print(result);
+        if (kDebugMode) {
+          print(result);
+        }
         upSoon = NowPlayModel.fromJson(result);
 
         // ignore: avoid_print

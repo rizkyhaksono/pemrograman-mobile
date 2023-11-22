@@ -1,6 +1,5 @@
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

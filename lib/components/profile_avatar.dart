@@ -33,7 +33,7 @@ class ProfileAvatar extends StatelessWidget {
             if (isImagePathAvailable) {
               backgroundImage = FileImage(File(imagePath));
             } else {
-              backgroundImage = AssetImage("assets/images/profile.jpg");
+              backgroundImage = const AssetImage("assets/images/profile.jpg");
             }
 
             return CircleAvatar(
