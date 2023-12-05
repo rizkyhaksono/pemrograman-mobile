@@ -17,7 +17,7 @@ class FeedbackController extends ClientController {
   final TextEditingController descController = TextEditingController();
   Future storeFeedback() async {
     try {
-      if (titleController.text.isNotEmpty) {
+      if (titleController.text.isNotEmpty && descController.text.isNotEmpty) {
         final map = {
           'title': titleController.text,
           'description': descController.text,
@@ -34,26 +34,42 @@ class FeedbackController extends ClientController {
             Permission.delete(Role.any()),
           ],
         );
-        print("DatabaseController:: storeFeedback $result");
+
+        if (result != null) {
+          // Data berhasil dikirim
+          Get.snackbar(
+            'Success',
+            'Data has been submitted successfully!',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green,
+          );
+        } else {
+          // Terjadi kesalahan saat mengirim data
+          Get.snackbar(
+            'Error',
+            'Failed to submit data. Please try again.',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+          );
+        }
       } else {
+        // Menampilkan notifikasi jika ada field yang belum diisi
         Get.snackbar(
           'Input Error',
-          'Name cannot be empty',
+          'All fields must be filled.',
           snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
         );
       }
     } catch (error) {
-      Get.defaultDialog(
-        title: "Error Database",
-        titlePadding: const EdgeInsets.only(top: 15, bottom: 5),
-        titleStyle: Get.context?.theme.textTheme.titleLarge,
-        content: Text(
-          "$error",
-          style: Get.context?.theme.textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        contentPadding: const EdgeInsets.only(top: 5, left: 15, right: 15),
+      // Menampilkan notifikasi jika terjadi kesalahan
+      Get.snackbar(
+        'Error',
+        'An error occurred. Please try again later.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
       );
+      print("DatabaseController:: storeFeedback $error");
     }
   }
 }
