@@ -38,26 +38,18 @@ class FeedbackController extends ClientController {
         if (result != null) {
           // Data berhasil dikirim
           Get.snackbar(
-            'Success',
-            'Data has been submitted successfully!',
-            snackPosition: SnackPosition.BOTTOM,
+            'Sukses 😃',
+            'Data Anda Telah Terekam Dalam Database!',
+            snackPosition: SnackPosition.TOP,
             backgroundColor: Colors.green,
-          );
-        } else {
-          // Terjadi kesalahan saat mengirim data
-          Get.snackbar(
-            'Error',
-            'Failed to submit data. Please try again.',
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red,
           );
         }
       } else {
         // Menampilkan notifikasi jika ada field yang belum diisi
         Get.snackbar(
-          'Input Error',
-          'All fields must be filled.',
-          snackPosition: SnackPosition.BOTTOM,
+          'Inputan Kosong',
+          'Semua kolom harus terisi',
+          snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.red,
         );
       }
@@ -65,8 +57,8 @@ class FeedbackController extends ClientController {
       // Menampilkan notifikasi jika terjadi kesalahan
       Get.snackbar(
         'Error',
-        'An error occurred. Please try again later.',
-        snackPosition: SnackPosition.BOTTOM,
+        'Terjadi Kesalahan! Silahkan Coba Lagi',
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red,
       );
       print("DatabaseController:: storeFeedback $error");
