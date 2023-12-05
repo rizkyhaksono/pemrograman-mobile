@@ -39,7 +39,7 @@ class ProfilePage extends GetView<ProfileController> {
                 fontFamily: Resources.font.primaryFont,
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 32,
+                fontSize: 28,
               ),
             ),
           ),
@@ -71,9 +71,7 @@ class ProfilePage extends GetView<ProfileController> {
             height: 70,
             child: ElevatedButton(
               onPressed: () {
-                if (kDebugMode) {
-                  print("edit profile");
-                }
+                Get.toNamed("/edit_profile");
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Resources.color.hightlight,

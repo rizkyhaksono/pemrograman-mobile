@@ -6,6 +6,7 @@ import 'package:demo_mobile/presentation/dashboard/home/home_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_page.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/edit_profile/edit_profile_page.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
 import 'package:demo_mobile/presentation/auth/login/login_binding.dart';
@@ -99,6 +100,12 @@ class PageRoutes {
       binding: SignUpBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
-    )
+    ),
+    GetPage(
+      name: PageName.editProfile,
+      page: () => EditProfilePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
   ];
 }

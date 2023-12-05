@@ -14,6 +14,7 @@ class PageName {
   static const movieDetail = "/movie_detail";
   static const favorite = "/favorite";
   static const profile = "/profile";
+  static const editProfile = "/edit_profile";
 
   static const about = "/about";
   static const github = "/github";

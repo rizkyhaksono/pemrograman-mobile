@@ -153,6 +153,7 @@ class LoginPage extends GetView<AuthController> {
                           Visibility(
                             visible: !controller.isLoading.value,
                             child: Container(
+                              height: 50,
                               alignment: Alignment.center,
                               child: Text(
                                 'Sign In',

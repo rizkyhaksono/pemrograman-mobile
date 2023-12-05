@@ -9,13 +9,13 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.6
-  http: ^1.1.0
-  dio: 5.3.2
+  http: ^1.0.0
   firebase_core: ^2.16.0
   firebase_messaging: ^14.6.6
   flutter_local_notifications: ^15.1.0+1
   shared_preferences: ^2.2.0
   firebase_analytics: ^10.4.5
+  appwrite: ^11.0.1
   firebase_auth: ^4.10.0
   get_storage: ^2.0.2
   image_picker: ^1.0.4
