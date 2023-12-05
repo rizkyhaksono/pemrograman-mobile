@@ -129,6 +129,18 @@ class ProfilePage extends GetView<ProfileController> {
                 },
               ),
               ProfileMenuWidget(
+                title: "Feedback",
+                icon: Icons.comment_bank,
+                textColor: Resources.color.hightlight,
+                onPress: () {
+                  if (kDebugMode) {
+                    print("info");
+                  }
+                  Get.toNamed('/feedback');
+                  
+                },
+              ),
+              ProfileMenuWidget(
                 title: "Logout",
                 icon: Icons.logout_outlined,
                 textColor: Resources.color.hightlight,
