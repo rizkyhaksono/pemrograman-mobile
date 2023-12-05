@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class PageName {
   static const splash = "/splash";
 
@@ -19,4 +21,5 @@ class PageName {
   static const about = "/about";
   static const github = "/github";
   static const moviesWeb = "/movies-web";
+  static const feedback = "/feedback";
 }
