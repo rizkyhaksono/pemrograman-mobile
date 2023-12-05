@@ -4,21 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'feedback_controller.dart'; // Import your FeedbackController file
 
-// class FeedbackPage extends GetView {
-//   const FeedbackPage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('GetX Example'),
-//       ),
-//     );
-//   }
-// }
 
 class FeedbackPage extends StatelessWidget {
   final FeedbackController controller = Get.put(FeedbackController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +36,7 @@ class FeedbackPage extends StatelessWidget {
                   height: 30,
                 ),
                 TextField(
-                  onChanged: (value) => controller.email.value = value,
+                  controller: controller.titleController,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Resources.color.hightlight,
@@ -83,7 +72,7 @@ class FeedbackPage extends StatelessWidget {
                   height: 20,
                 ),
                 TextField(
-                  onChanged: (value) => controller.email.value = value,
+                  controller: controller.descController,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Resources.color.hightlight,
@@ -117,7 +106,9 @@ class FeedbackPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () => controller.submitFeedback(),
+                  onPressed: () {
+                    controller.storeFeedback();
+                  },
                   style: ElevatedButton.styleFrom(
                       primary: Resources.color.hightlight,
                       shape: RoundedRectangleBorder(
