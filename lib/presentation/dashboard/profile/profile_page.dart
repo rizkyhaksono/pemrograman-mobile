@@ -39,7 +39,7 @@ class ProfilePage extends GetView<ProfileController> {
                 fontFamily: Resources.font.primaryFont,
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 32,
+                fontSize: 28,
               ),
             ),
           ),
@@ -71,9 +71,7 @@ class ProfilePage extends GetView<ProfileController> {
             height: 70,
             child: ElevatedButton(
               onPressed: () {
-                if (kDebugMode) {
-                  print("edit profile");
-                }
+                Get.toNamed("/edit_profile");
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Resources.color.hightlight,
@@ -102,7 +100,9 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.settings,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("setting");
+                  if (kDebugMode) {
+                    print("setting");
+                  }
                 },
               ),
               ProfileMenuWidget(
@@ -118,7 +118,21 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.info_rounded,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("info");
+                  if (kDebugMode) {
+                    print("info");
+                  }
+                },
+              ),
+              ProfileMenuWidget(
+                title: "Feedback",
+                icon: Icons.comment_bank,
+                textColor: Resources.color.hightlight,
+                onPress: () {
+                  if (kDebugMode) {
+                    print("info");
+                  }
+                  Get.toNamed('/feedback');
+                  
                 },
               ),
               ProfileMenuWidget(

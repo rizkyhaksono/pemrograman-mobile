@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoviePage extends GetView<MovieController> {
-  MoviePage({super.key});
+  const MoviePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +48,12 @@ class MoviePage extends GetView<MovieController> {
                   final dataArray = dataImage.toList();
                   final titleApi =
                       controller.upSoon!.results.map((e) => e.title).toList();
-
                   final ratingApi = controller.upSoon!.results
                       .map((e) => e.voteAverage)
                       .toList();
 
                   return GestureDetector(
                     onTap: () {
-                      // Get.toNamed('/movie_detail');
                       Get.toNamed('/movies-web');
                       if (kDebugMode) {
                         print("clicked");
@@ -64,14 +62,14 @@ class MoviePage extends GetView<MovieController> {
                     child: Column(
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 25),
+                          margin: const EdgeInsets.only(top: 25),
                           width: Get.width,
                           height: 530,
                           decoration: BoxDecoration(
                               color: Resources.color.hightlight,
                               borderRadius: BorderRadius.circular(20)),
                           child: Container(
-                            padding: EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.only(top: 10),
                             child: Column(
                               children: [
                                 Center(
@@ -86,13 +84,13 @@ class MoviePage extends GetView<MovieController> {
                                   ),
                                 ),
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                  margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
                                   height: 50,
                                   decoration: BoxDecoration(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 12),
                                   child: Text(
                                     titleApi[index],
@@ -101,24 +99,24 @@ class MoviePage extends GetView<MovieController> {
                                         fontSize: 20),
                                   ),
                                 ),
-                                SizedBox(height: 8.0),
+                                const SizedBox(height: 8.0),
                                 Container(
                                   width: 120,
                                   decoration: BoxDecoration(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 16, vertical: 8),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.star,
                                         color: Colors.yellow,
                                       ),
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                       Text(
-                                        ratingApi[index].toString() + "/10",
+                                        "${ratingApi[index]}/10",
                                         style: TextStyle(
                                           color: Resources.color.hightlight,
                                         ),

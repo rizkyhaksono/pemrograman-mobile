@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final nowPlayModel = nowPlayModelFromJson(jsonString);
-
 import 'dart:convert';
 
 NowPlayModel nowPlayModelFromJson(String str) =>

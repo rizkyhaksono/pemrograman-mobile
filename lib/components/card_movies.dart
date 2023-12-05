@@ -1,7 +1,4 @@
-import 'package:demo_mobile/themes/resources.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CardRecommend extends StatefulWidget {
   final Iterable<String> imagePath;
@@ -22,28 +19,19 @@ class CardRecommend extends StatefulWidget {
 class _CardRecommendState extends State<CardRecommend> {
   @override
   Widget build(BuildContext context) {
-    String categoryText = widget.categoryName.join(", ");
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: Container(
         decoration: ShapeDecoration(
-          // color: Resources.color.darkGrey,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // ClipRRect(
-            //   borderRadius: BorderRadius.circular(8.0),
-            //   child: Image.asset(
-            //     widget.imagePath,
-            //     fit: BoxFit.fill,
-            //   ),
-            // ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
           ],

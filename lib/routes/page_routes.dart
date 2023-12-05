@@ -1,4 +1,3 @@
-// getx
 import 'package:demo_mobile/components/movie_detail.dart';
 import 'package:demo_mobile/components/movie_web.dart';
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_binding.dart';
@@ -6,20 +5,18 @@ import 'package:demo_mobile/presentation/dashboard/favorites/favorite_page.dart'
 import 'package:demo_mobile/presentation/dashboard/home/home_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_page.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_binding.dart';
-import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/edit_profile/edit_profile_page.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/feedback/feedback_page.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
 import 'package:demo_mobile/presentation/auth/login/login_binding.dart';
 import 'package:demo_mobile/presentation/auth/login/login_page.dart';
 import 'package:demo_mobile/presentation/web_view/web_binding.dart';
 import 'package:demo_mobile/presentation/web_view/web_page.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-// page names
 import 'package:demo_mobile/routes/page_names.dart';
-
-// pages
 import 'package:demo_mobile/presentation/splash/splash_page.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_page.dart';
@@ -52,14 +49,14 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.home,
-      page: () => HomePage(),
+      page: () => const HomePage(),
       binding: HomeBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
       name: PageName.movies,
-      page: () => MoviePage(),
+      page: () => const MoviePage(),
       binding: MovieBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
@@ -94,7 +91,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.moviesWeb,
-      page: () => MovieWebPage(),
+      page: () => const MovieWebPage(),
       binding: MovieBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
@@ -105,6 +102,18 @@ class PageRoutes {
       binding: SignUpBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: PageName.editProfile,
+      page: () => EditProfilePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(name: PageName.feedback, 
+    page: () => FeedbackPage(),
+    transition: Transition.fadeIn,
+    transitionDuration: const Duration(milliseconds: 500),
+
     )
   ];
 }

@@ -1,5 +1,6 @@
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -149,10 +150,10 @@ class LoginPage extends GetView<AuthController> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          // Text or any other content
                           Visibility(
                             visible: !controller.isLoading.value,
                             child: Container(
+                              height: 50,
                               alignment: Alignment.center,
                               child: Text(
                                 'Sign In',
@@ -165,13 +166,11 @@ class LoginPage extends GetView<AuthController> {
                               ),
                             ),
                           ),
-                          // Loading Indicator
                           Visibility(
                             visible: controller.isLoading.value,
                             child: Center(
                               child: CircularProgressIndicator(
-                                color: Resources
-                                    .color.hightlight, // Adjust color as needed
+                                color: Resources.color.hightlight,
                               ),
                             ),
                           ),
@@ -219,9 +218,9 @@ class LoginPage extends GetView<AuthController> {
                 ),
                 InkWell(
                   onTap: () {
-                    // widget.controller.animateToPage(1,
-                    //     duration: const Duration(milliseconds: 500),
-                    //     curve: Curves.ease);
+                    if (kDebugMode) {
+                      print("forget password");
+                    }
                   },
                   child: Center(
                     child: Text(

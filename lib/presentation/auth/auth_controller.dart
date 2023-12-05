@@ -1,4 +1,7 @@
+import 'package:appwrite/appwrite.dart';
+import 'package:demo_mobile/utils/client_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,10 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final SharedPreferences _prefs = Get.find<SharedPreferences>();
+  final ClientController _clientController = ClientController();
+
+  Account? account;
 
   RxBool isLoading = false.obs;
   RxBool isLoggedIn = false.obs;
-  // RxBool obscureText = true.obs;
   RxBool showPassword = true.obs;
 
   final TextEditingController emailController = TextEditingController();
@@ -19,6 +24,7 @@ class AuthController extends GetxController {
   void onInit() {
     super.onInit();
     checkLoginStatus();
+    account = Account(_clientController.client);
   }
 
   Future<void> checkLoginStatus() async {
@@ -33,10 +39,10 @@ class AuthController extends GetxController {
   }
 
   void toggleObscureText() {
-    // showPassword.value = !showPassword.value;
-    // print("Before toggle: ${showPassword.value}");
     showPassword.value = !showPassword.value;
-    print("After toggle: ${showPassword.value}");
+    if (kDebugMode) {
+      print("After toggle: ${showPassword.value}");
+    }
   }
 
   Future<void> registerUser(String email, String password) async {
@@ -46,6 +52,7 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
+      
       Get.snackbar('Success', 'Registration successful',
           backgroundColor: Colors.green);
       Get.offNamed("/login");
