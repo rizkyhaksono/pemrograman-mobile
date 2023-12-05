@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final top10Model = top10ModelFromJson(jsonString);
-
 import 'dart:convert';
 
 Top10Model top10ModelFromJson(String str) =>

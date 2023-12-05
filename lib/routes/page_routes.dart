@@ -1,4 +1,3 @@
-// getx
 import 'package:demo_mobile/components/movie_detail.dart';
 import 'package:demo_mobile/components/movie_web.dart';
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_binding.dart';
@@ -14,11 +13,7 @@ import 'package:demo_mobile/presentation/auth/login/login_page.dart';
 import 'package:demo_mobile/presentation/web_view/web_binding.dart';
 import 'package:demo_mobile/presentation/web_view/web_page.dart';
 import 'package:get/get.dart';
-
-// page names
 import 'package:demo_mobile/routes/page_names.dart';
-
-// pages
 import 'package:demo_mobile/presentation/splash/splash_page.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/dashboard_page.dart';

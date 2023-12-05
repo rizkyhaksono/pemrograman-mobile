@@ -10,7 +10,6 @@ class AuthController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isLoggedIn = false.obs;
-  // RxBool obscureText = true.obs;
   RxBool showPassword = true.obs;
 
   final TextEditingController emailController = TextEditingController();
