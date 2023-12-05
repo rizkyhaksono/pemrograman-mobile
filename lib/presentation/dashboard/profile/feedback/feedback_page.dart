@@ -56,7 +56,7 @@ class FeedbackPage extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   decoration: InputDecoration(
-                    labelText: 'What is your most used feature?',
+                    labelText: 'Title',
                     labelStyle: TextStyle(
                       color: const Color.fromARGB(255, 175, 162, 135),
                       fontSize: 15,
@@ -92,7 +92,7 @@ class FeedbackPage extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                   decoration: InputDecoration(
-                    labelText: 'How Often do you use our app?',
+                    labelText: 'Feedback',
                     labelStyle: TextStyle(
                       color: const Color.fromARGB(255, 175, 162, 135),
                       fontSize: 15,
