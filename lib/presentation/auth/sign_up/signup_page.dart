@@ -1,11 +1,16 @@
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/account_controller.dart';
+import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpPage extends GetView<AuthController> {
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
+
+  final AccountController accountController = Get.put(AccountController());
+  final DatabaseController databaseController = Get.put(DatabaseController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +39,42 @@ class SignUpPage extends GetView<AuthController> {
                   height: 30,
                 ),
                 TextField(
+                  controller: controller.nameController,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Resources.color.hightlight,
+                    fontSize: 13,
+                    fontFamily: Resources.font.primaryFont,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                    labelStyle: TextStyle(
+                      color: const Color.fromARGB(255, 175, 162, 135),
+                      fontSize: 15,
+                      fontFamily: Resources.font.primaryFont,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 134, 128, 115),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Resources.color.hightlight,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextField(
                   controller: controller.emailController,
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -44,6 +85,42 @@ class SignUpPage extends GetView<AuthController> {
                   ),
                   decoration: InputDecoration(
                     labelText: 'Email',
+                    labelStyle: TextStyle(
+                      color: const Color.fromARGB(255, 175, 162, 135),
+                      fontSize: 15,
+                      fontFamily: Resources.font.primaryFont,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(255, 134, 128, 115),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide(
+                        width: 1,
+                        color: Resources.color.hightlight,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: controller.phoneController,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Resources.color.hightlight,
+                    fontSize: 13,
+                    fontFamily: Resources.font.primaryFont,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  decoration: InputDecoration(
+                    labelText: 'Phone Numbers',
                     labelStyle: TextStyle(
                       color: const Color.fromARGB(255, 175, 162, 135),
                       fontSize: 15,
@@ -148,11 +225,38 @@ class SignUpPage extends GetView<AuthController> {
                                 child: ElevatedButton(
                                   onPressed: controller.isLoading.value
                                       ? null
-                                      : () {
-                                          controller.registerUser(
+                                      : () async {
+                                          await controller.registerUser(
                                               controller.emailController.text,
                                               controller
                                                   .passwordController.text);
+
+                                          Map<String, dynamic> map = {
+                                            'userId': 'unique()',
+                                            'email':
+                                                controller.emailController.text,
+                                            'password': controller
+                                                .passwordController.text,
+                                            'name':
+                                                controller.nameController.text,
+                                            'phone':
+                                                controller.phoneController.text,
+                                          };
+                                          await accountController
+                                              .createAccount(map);
+
+                                          Map<String, dynamic> data = {
+                                            'name':
+                                                controller.nameController.text,
+                                            'email':
+                                                controller.emailController.text,
+                                            'password': controller
+                                                .passwordController.text,
+                                            'phone':
+                                                controller.phoneController.text,
+                                          };
+                                          await databaseController
+                                              .storeUserName(data);
                                         },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Resources.color.hightlight,

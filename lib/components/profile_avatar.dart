@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/storage_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,9 @@ class ProfileAvatar extends StatelessWidget {
   final ImagePicker imagePicker = ImagePicker();
 
   final ProfileController _profileController = Get.put(ProfileController());
+  final StorageController storageController = Get.put(StorageController());
+  List<String> _imageUrls = [];
+  XFile? _image;
 
   ProfileAvatar({
     super.key,
@@ -32,6 +36,7 @@ class ProfileAvatar extends StatelessWidget {
             ImageProvider<Object>? backgroundImage;
             if (isImagePathAvailable) {
               backgroundImage = FileImage(File(imagePath));
+              storageController.storeImage(File(imagePath));
             } else {
               backgroundImage = const AssetImage("assets/images/profile.jpg");
             }

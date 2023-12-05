@@ -4,6 +4,7 @@ import 'package:demo_mobile/components/profile_avatar.dart';
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class ProfilePage extends GetView<ProfileController> {
   final ImagePicker? imagePicker = ImagePicker();
 
   final AuthController _authController = Get.put(AuthController());
+  final DatabaseController databaseController = Get.find<DatabaseController>();
 
   ProfilePage({
     super.key,
@@ -53,7 +55,10 @@ class ProfilePage extends GetView<ProfileController> {
             height: 20,
           ),
           Text(
-            'Rizky Haksono',
+            // 'Rizky Haksono',
+            databaseController.documents.isNotEmpty
+                ? databaseController.documents[0].data['name'] ?? ''
+                : '',
             style: TextStyle(
               color: Resources.color.hightlight,
               fontSize: 24.0,
@@ -135,27 +140,6 @@ class ProfilePage extends GetView<ProfileController> {
           ),
           const SizedBox(
             height: 20,
-          ),
-          Container(
-            width: Get.width,
-            height: 100.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "This app made by Rizky Haksono",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: Resources.font.primaryFont,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

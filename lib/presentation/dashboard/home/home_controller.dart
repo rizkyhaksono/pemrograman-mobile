@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/models/toprated_movie.dart';
 import 'package:demo_mobile/utils/apis/api.dart';
+import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
+  final DatabaseController databaseController = Get.put(DatabaseController());
+
   RxInt selectedIndex = 0.obs;
 
   RxInt selectedRecent = 0.obs;
@@ -21,6 +24,7 @@ class HomeController extends GetxController {
     super.onInit();
     await getcomingsoon();
     await gettop();
+    databaseController.fetchData();
   }
 
   List<String> categoryList = [
@@ -43,7 +47,7 @@ class HomeController extends GetxController {
   void handleRecentSelection(int index) {
     var test = selectedRecent.value = index;
     if (kDebugMode) {
-      print(test);
+      // print(test);
     }
   }
 
@@ -56,7 +60,7 @@ class HomeController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         if (kDebugMode) {
-          print(result);
+          // print(result);
         }
         trendingMovie = Top10Model.fromJson(result);
 
@@ -87,7 +91,7 @@ class HomeController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         if (kDebugMode) {
-          print(result);
+          // print(result);
         }
         nowSoon = NowPlayModel.fromJson(result);
 

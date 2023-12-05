@@ -6,6 +6,7 @@ import 'package:demo_mobile/presentation/dashboard/home/home_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_page.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_page.dart';
+import 'package:demo_mobile/presentation/dashboard/profile/edit_profile/edit_profile_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/edit_profile/edit_profile_page.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_binding.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_page.dart';
@@ -33,7 +34,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.login,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
       binding: LoginBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
@@ -96,7 +97,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.signUp,
-      page: () => const SignUpPage(),
+      page: () => SignUpPage(),
       binding: SignUpBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
@@ -104,6 +105,7 @@ class PageRoutes {
     GetPage(
       name: PageName.editProfile,
       page: () => EditProfilePage(),
+      binding: EditProfileBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),

@@ -9,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final SharedPreferences _prefs = Get.find<SharedPreferences>();
-  final ClientController _clientController = ClientController();
 
   Account? account;
 
@@ -17,14 +16,15 @@ class AuthController extends GetxController {
   RxBool isLoggedIn = false.obs;
   RxBool showPassword = true.obs;
 
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
   void onInit() {
     super.onInit();
     checkLoginStatus();
-    account = Account(_clientController.client);
   }
 
   Future<void> checkLoginStatus() async {
@@ -52,7 +52,6 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
-      
       Get.snackbar('Success', 'Registration successful',
           backgroundColor: Colors.green);
       Get.offNamed("/login");

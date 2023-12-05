@@ -1,14 +1,33 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:demo_mobile/utils/client_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DatabaseController extends ClientController {
   Databases? databases;
+
+  RxList<Document> documents = <Document>[].obs;
+
   @override
   void onInit() {
     super.onInit();
     databases = Databases(client);
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      final response = await databases!.listDocuments(
+        databaseId: "656f48b91249dddb8f39",
+        collectionId: "656f48e8972dfe420f62",
+      );
+
+      documents.assignAll(response.documents);
+      print(documents);
+    } catch (error) {
+      print("Error fetching data: $error");
+    }
   }
 
   Future storeUserName(Map map) async {

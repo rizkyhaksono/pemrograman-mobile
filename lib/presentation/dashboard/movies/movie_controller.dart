@@ -40,7 +40,7 @@ class MovieController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         if (kDebugMode) {
-          print(result);
+          // print(result);
         }
         upSoon = NowPlayModel.fromJson(result);
 

@@ -2,6 +2,8 @@ import 'package:demo_mobile/components/card_category.dart';
 import 'package:demo_mobile/components/notification_bottom.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/account_controller.dart';
+import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,9 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
+    final DatabaseController databaseController =
+        Get.find<DatabaseController>();
+
     final nowSoon = controller.nowSoon;
 
     if (nowSoon == null || nowSoon.results == null) {
@@ -41,7 +46,9 @@ class HomePage extends GetView<HomeController> {
             children: [
               Text.rich(
                 TextSpan(
-                  text: "Hi, Rizky Haksono\n",
+                  // text: "Hi, Rizky Haksono\n",
+                  text:
+                      "Hi, ${databaseController.documents.isNotEmpty ? databaseController.documents[0].data['name'] ?? '' : ''}\n",
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: Resources.font.primaryFont,

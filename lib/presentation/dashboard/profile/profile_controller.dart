@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:demo_mobile/utils/storage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -51,6 +52,11 @@ class ProfileController extends GetxController {
       final Directory appDirectory = await getApplicationCacheDirectory();
       const String fileName = 'profile_image.png';
 
+      await StorageController().storeImage(File(pickedImage.path));
+      final fileId = pickedImage.path.split('/').last;
+      setProfileImagePath(fileId);
+      setStoredImagePath(localImage: fileId);
+
       setProfileImagePath(File(pickedImage.path).path);
       setStoredImagePath(
           localImage: await File(pickedImage.path)
@@ -66,8 +72,8 @@ class ProfileController extends GetxController {
     }
   }
 
-  var githubRizky = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(const Color(0x00000000))
-    ..loadRequest(Uri.parse('https://github.com/rizkyhaksono'));
+  // var githubRizky = WebViewController()
+  //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  //   ..setBackgroundColor(const Color(0x00000000))
+  //   ..loadRequest(Uri.parse('https://github.com/rizkyhaksono'));
 }

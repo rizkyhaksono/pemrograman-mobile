@@ -1,11 +1,14 @@
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/account_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends GetView<AuthController> {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
+
+  final AccountController accountController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +138,7 @@ class LoginPage extends GetView<AuthController> {
                     return ElevatedButton(
                       onPressed: controller.isLoading.value
                           ? null
-                          : () {
+                          : () async {
                               controller.loginUser(
                                 controller.emailController.text,
                                 controller.passwordController.text,
