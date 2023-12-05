@@ -43,6 +43,8 @@ class FeedbackController extends ClientController {
             snackPosition: SnackPosition.TOP,
             backgroundColor: Colors.green,
           );
+          titleController.clear();
+          descController.clear();
         }
       } else {
         // Menampilkan notifikasi jika ada field yang belum diisi
