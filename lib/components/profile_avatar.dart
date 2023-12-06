@@ -32,8 +32,10 @@ class ProfileAvatar extends StatelessWidget {
             String imagePath = _profileController.profilePicPath.value;
 
             ImageProvider<Object>? backgroundImage;
+            backgroundImage = FileImage(File(imagePath));
+            storageController.storeImage(File(imagePath));
+
             if (isImagePathAvailable) {
-              backgroundImage = FileImage(File(imagePath));
             } else {
               backgroundImage = const AssetImage("assets/images/profile.jpg");
             }
