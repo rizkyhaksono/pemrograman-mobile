@@ -44,31 +44,32 @@ class HomePage extends GetView<HomeController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text.rich(
-                TextSpan(
-                  // text: "Hi, Rizky Haksono\n",
-                  text:
-                      "Hi, ${databaseController.documents.isNotEmpty ? databaseController.documents[0].data['name'] ?? '' : ''}\n",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: Resources.font.primaryFont,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                  ),
-                  children: [
-                    WidgetSpan(
-                      child: Text(
-                        "Welcome to Picvie",
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: Resources.font.primaryFont,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
+              Obx(
+                () => Text.rich(
+                  TextSpan(
+                    text:
+                        "Hi, ${databaseController.documents.isNotEmpty ? databaseController.documents[0].data['name'] ?? '' : ''}\n",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: Resources.font.primaryFont,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                    ),
+                    children: [
+                      WidgetSpan(
+                        child: Text(
+                          "Welcome to Picvie",
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: Resources.font.primaryFont,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               IconButton(

@@ -14,8 +14,6 @@ class ProfileAvatar extends StatelessWidget {
 
   final ProfileController _profileController = Get.put(ProfileController());
   final StorageController storageController = Get.put(StorageController());
-  List<String> _imageUrls = [];
-  XFile? _image;
 
   ProfileAvatar({
     super.key,

@@ -54,18 +54,19 @@ class ProfilePage extends GetView<ProfileController> {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            // 'Rizky Haksono',
-            databaseController.documents.isNotEmpty
-                ? databaseController.documents[0].data['name'] ?? ''
-                : '',
-            style: TextStyle(
-              color: Resources.color.hightlight,
-              fontSize: 24.0,
-              fontFamily: Resources.font.primaryFont,
-              fontWeight: FontWeight.w600,
+          Obx(
+            () => Text(
+              databaseController.documents.isNotEmpty
+                  ? databaseController.documents[0].data['name'] ?? ''
+                  : '',
+              style: TextStyle(
+                color: Resources.color.hightlight,
+                fontSize: 24.0,
+                fontFamily: Resources.font.primaryFont,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           Container(
             padding: const EdgeInsets.only(
@@ -137,7 +138,6 @@ class ProfilePage extends GetView<ProfileController> {
                     print("info");
                   }
                   Get.toNamed('/feedback');
-                  
                 },
               ),
               ProfileMenuWidget(

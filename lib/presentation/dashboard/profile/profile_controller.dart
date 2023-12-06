@@ -13,6 +13,7 @@ class ProfileController extends GetxController {
 
   RxBool isProficPicPathSet = false.obs;
   RxString profilePicPath = "".obs;
+  RxBool isImageUploaded = false.obs;
 
   File? pickedFile;
   final ImagePicker imagePicker = ImagePicker();
@@ -20,6 +21,10 @@ class ProfileController extends GetxController {
   void setProfileImagePath(String path) {
     profilePicPath.value = path;
     isProficPicPathSet.value = true;
+  }
+
+  void setImageUploaded(bool uploaded) {
+    isImageUploaded.value = uploaded;
   }
 
   @override
