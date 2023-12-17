@@ -12,7 +12,6 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HomeController>();
     final DatabaseController databaseController =
         Get.find<DatabaseController>();
 
@@ -28,7 +27,11 @@ class HomePage extends GetView<HomeController> {
     }
 
     Iterable<int>? totalData = controller.nowSoon?.results.map((e) => e.id);
-    List<int> totalDataTrending = totalData!.toList();
+    List<int> totalDataNowSoon = totalData!.toList();
+
+    Iterable<int>? totalDiscover =
+        controller.movieDiscover?.results.map((e) => e.id);
+    List<int> totalDataDiscover = totalDiscover?.toList() ?? [];
 
     return Scaffold(
       backgroundColor: Resources.color.background,
@@ -171,7 +174,7 @@ class HomePage extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Trending",
+                  "Movie Discover",
                   style: TextStyle(
                     fontFamily: Resources.font.primaryFont,
                     fontSize: 24,
@@ -204,17 +207,20 @@ class HomePage extends GetView<HomeController> {
             child: SizedBox(
               height: 600,
               child: ListView.builder(
-                itemCount: totalDataTrending.length,
+                itemCount: totalDataDiscover.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final dataImage =
-                      controller.nowSoon?.results.map((e) => e.backdropPath);
+                  print("Total discover: ${totalDataDiscover}");
+                  final dataImage = controller.movieDiscover?.results
+                      .map((e) => e.backdropPath);
                   final dataArray = dataImage?.toList();
-                  final titleApi =
-                      controller.nowSoon?.results.map((e) => e.title).toList();
-                  final ratingApi = controller.nowSoon!.results
+                  final titleApi = controller.movieDiscover?.results
+                      .map((e) => e.title)
+                      .toList();
+                  final ratingApi = controller.movieDiscover!.results
                       .map((e) => e.voteAverage)
                       .toList();
+
                   return GestureDetector(
                     onTap: () {
                       controller.handleRecentSelection(index);
@@ -304,7 +310,7 @@ class HomePage extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Now Playing",
+                  "Now Soon",
                   style: TextStyle(
                     fontFamily: Resources.font.primaryFont,
                     fontSize: 24,
@@ -335,7 +341,7 @@ class HomePage extends GetView<HomeController> {
             child: SizedBox(
               height: 600,
               child: ListView.builder(
-                itemCount: totalDataTrending.length,
+                itemCount: totalDataNowSoon.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final dataImage =

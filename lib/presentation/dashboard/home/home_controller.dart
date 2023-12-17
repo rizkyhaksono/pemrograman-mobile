@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:demo_mobile/models/movie_discover.dart';
 import 'package:demo_mobile/models/nowplaying_movie.dart';
 import 'package:demo_mobile/models/toprated_movie.dart';
 import 'package:demo_mobile/utils/apis/api.dart';
@@ -9,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  final DatabaseController databaseController = Get.put(DatabaseController());
+  // final DatabaseController databaseController = Get.put(DatabaseController());
 
   RxInt selectedIndex = 0.obs;
 
@@ -18,13 +19,15 @@ class HomeController extends GetxController {
 
   Top10Model? trendingMovie;
   NowPlayModel? nowSoon;
+  MovieDiscover? movieDiscover;
 
   @override
   void onInit() async {
     super.onInit();
     await getcomingsoon();
     await gettop();
-    databaseController.fetchData();
+    await getMovieDiscover();
+    // databaseController.fetchData();
   }
 
   List<String> categoryList = [
@@ -47,7 +50,7 @@ class HomeController extends GetxController {
   void handleRecentSelection(int index) {
     var test = selectedRecent.value = index;
     if (kDebugMode) {
-      // print(test);
+      print(test);
     }
   }
 
@@ -59,9 +62,6 @@ class HomeController extends GetxController {
       final response = await http.get(Uri.parse(url3));
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        if (kDebugMode) {
-          // print(result);
-        }
         trendingMovie = Top10Model.fromJson(result);
 
         if (kDebugMode) {
@@ -75,7 +75,6 @@ class HomeController extends GetxController {
         }
       }
     } catch (e) {
-      // ignore: avoid_print
       printError(info: "Error");
     } finally {
       isLoading(false);
@@ -90,9 +89,6 @@ class HomeController extends GetxController {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        if (kDebugMode) {
-          // print(result);
-        }
         nowSoon = NowPlayModel.fromJson(result);
 
         if (kDebugMode) {
@@ -107,6 +103,35 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       printError(info: "Error");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  String movie_discover =
+      "${BaseAPI.baseUrl}discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${BaseAPI.apiKey}";
+  getMovieDiscover() async {
+    try {
+      final response = await http.get(Uri.parse(movie_discover));
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+
+        MovieDiscover.fromJson(result);
+
+        print("Discover Movie: $result");
+
+        if (kDebugMode) {
+          print("is recived");
+        }
+      } else {
+        isLoading(false);
+
+        if (kDebugMode) {
+          print("is not recived");
+        }
+      }
+    } catch (e) {
+      print(e);
     } finally {
       isLoading(false);
     }

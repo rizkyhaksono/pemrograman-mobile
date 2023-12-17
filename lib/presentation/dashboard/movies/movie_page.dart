@@ -155,3 +155,83 @@ class MoviePage extends GetView<MovieController> {
     );
   }
 }
+
+class MovieWidget extends StatelessWidget {
+  final String imagePath;
+  final String title;
+  final double rating;
+
+  const MovieWidget({
+    required this.imagePath,
+    required this.title,
+    required this.rating,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: Get.width,
+      height: 530,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Resources.color.hightlight,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
+                child: Image.network(
+                  "https://image.tmdb.org/t/p/original$imagePath",
+                  fit: BoxFit.cover,
+                  width: Get.width,
+                  height: 400,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Text(
+                title,
+                style:
+                    TextStyle(color: Resources.color.hightlight, fontSize: 20),
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Container(
+              width: 120,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    "$rating/10",
+                    style: TextStyle(color: Resources.color.hightlight),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

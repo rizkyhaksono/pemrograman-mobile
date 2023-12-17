@@ -1,8 +1,7 @@
 import 'package:demo_mobile/themes/resources.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'feedback_controller.dart'; // Import your FeedbackController file
+import 'feedback_controller.dart';
 
 class FeedbackPage extends StatelessWidget {
   final FeedbackController controller = Get.put(FeedbackController());
