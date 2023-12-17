@@ -9,8 +9,8 @@ class MoviePage extends GetView<MovieController> {
 
   @override
   Widget build(BuildContext context) {
-    final totalData = controller.upSoon!.results.map((e) => e.backdropPath);
-    final totalDataMovies = totalData.toList();
+    final totalData = controller.upSoon?.results.map((e) => e.backdropPath);
+    final totalDataMovies = totalData?.toList();
 
     return Scaffold(
       backgroundColor: Resources.color.background,
@@ -40,97 +40,112 @@ class MoviePage extends GetView<MovieController> {
             child: SizedBox(
               height: 650,
               child: ListView.builder(
-                itemCount: totalDataMovies.length,
+                itemCount: totalDataMovies?.length ?? 0,
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
-                  final dataImage =
-                      controller.upSoon!.results.map((e) => e.backdropPath);
+                  final dataImage = controller.upSoon?.results
+                          .map((e) => e.backdropPath)
+                          .toList() ??
+                      [];
                   final dataArray = dataImage.toList();
                   final titleApi =
-                      controller.upSoon!.results.map((e) => e.title).toList();
-                  final ratingApi = controller.upSoon!.results
-                      .map((e) => e.voteAverage)
-                      .toList();
+                      controller.upSoon?.results.map((e) => e.title).toList() ??
+                          [];
+                  final ratingApi = controller.upSoon?.results
+                          .map((e) => e.voteAverage)
+                          .toList() ??
+                      [];
 
-                  return GestureDetector(
-                    onTap: () {
-                      Get.toNamed('/movies-web');
-                      if (kDebugMode) {
-                        print("clicked");
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 25),
-                          width: Get.width,
-                          height: 530,
-                          decoration: BoxDecoration(
+                  if (index < dataArray.length &&
+                      index < titleApi.length &&
+                      index < ratingApi.length) {
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed('/movies-web');
+                        if (kDebugMode) {
+                          print("clicked");
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 25),
+                            width: Get.width,
+                            height: 530,
+                            decoration: BoxDecoration(
                               color: Resources.color.hightlight,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Container(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    child: Image.network(
-                                      "https://image.tmdb.org/t/p/original${dataArray[index]}",
-                                      fit: BoxFit.cover,
-                                      width: 330,
-                                      height: 400,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: Image.network(
+                                        "https://image.tmdb.org/t/p/original${dataArray[index]}",
+                                        fit: BoxFit.cover,
+                                        width: 330,
+                                        height: 400,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 12),
-                                  child: Text(
-                                    titleApi[index],
-                                    style: TextStyle(
+                                  Container(
+                                    margin:
+                                        const EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 12),
+                                    child: Text(
+                                      titleApi[index],
+                                      style: TextStyle(
                                         color: Resources.color.hightlight,
-                                        fontSize: 20),
-                                  ),
-                                ),
-                                const SizedBox(height: 8.0),
-                                Container(
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
+                                        fontSize: 20,
                                       ),
-                                      const SizedBox(height: 8.0),
-                                      Text(
-                                        "${ratingApi[index]}/10",
-                                        style: TextStyle(
-                                          color: Resources.color.hightlight,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Container(
+                                    width: 120,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 8),
+                                    child: Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(height: 8.0),
+                                        Text(
+                                          "${ratingApi[index]}/10",
+                                          style: TextStyle(
+                                            color: Resources.color.hightlight,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      child: Text("No Data"),
+                    );
+                  }
                 },
               ),
             ),

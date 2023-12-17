@@ -6,15 +6,12 @@ import 'package:get/get.dart';
 class FavoritePage extends GetView<FavoriteController> {
   FavoritePage({super.key});
 
-  dynamic orientation, size, height, width;
-
   @override
   Widget build(BuildContext context) {
-    orientation = MediaQuery.of(context).orientation;
-
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
+    final orientation = MediaQuery.of(context).orientation;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
 
     return Scaffold(
       backgroundColor: Resources.color.background,

@@ -2,7 +2,6 @@ import 'package:demo_mobile/components/card_category.dart';
 import 'package:demo_mobile/components/notification_bottom.dart';
 import 'package:demo_mobile/presentation/dashboard/home/home_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
-import 'package:demo_mobile/utils/account_controller.dart';
 import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class HomePage extends GetView<HomeController> {
 
     final nowSoon = controller.nowSoon;
 
-    if (nowSoon == null || nowSoon.results == null) {
+    if (nowSoon == null) {
       return Scaffold(
         backgroundColor: Resources.color.background,
         body: const Center(
@@ -106,7 +105,7 @@ class HomePage extends GetView<HomeController> {
                   hintText: "Search...",
                   hintStyle: MaterialStateProperty.all(
                     TextStyle(
-                      color: Colors.black38,
+                      color: Colors.black,
                       fontFamily: Resources.font.primaryFont,
                     ),
                   ),
@@ -182,7 +181,6 @@ class HomePage extends GetView<HomeController> {
                 ),
                 TextButton(
                   onPressed: () {
-                    // Get.toNamed('/movies');
                     if (kDebugMode) {
                       print("See all");
                     }
@@ -204,10 +202,10 @@ class HomePage extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 14, 0, 18),
             child: SizedBox(
-              height: Get.height / 2,
+              height: 600,
               child: ListView.builder(
                 itemCount: totalDataTrending.length,
-                scrollDirection: Axis.vertical,
+                scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final dataImage =
                       controller.nowSoon?.results.map((e) => e.backdropPath);
@@ -221,77 +219,76 @@ class HomePage extends GetView<HomeController> {
                     onTap: () {
                       controller.handleRecentSelection(index);
                       if (kDebugMode) {
-                        // print(" sd");
                         Get.toNamed('/movies-web');
                       }
                     },
                     child: Column(
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(top: 25),
+                          margin: const EdgeInsets.only(top: 25, right: 40),
                           width: Get.width,
                           height: 530,
                           decoration: BoxDecoration(
                               color: Resources.color.hightlight,
                               borderRadius: BorderRadius.circular(20)),
-                          child: Container(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    child: Image.network(
-                                      "https://image.tmdb.org/t/p/original${dataArray?[index]}",
-                                      fit: BoxFit.cover,
-                                      width: 330,
-                                      height: 400,
+                          child: Column(
+                            children: [
+                              Center(
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
+                                  ),
+                                  child: Image.network(
+                                    "https://image.tmdb.org/t/p/original${dataArray?[index]}",
+                                    fit: BoxFit.cover,
+                                    width: Get.width,
+                                    height: 400,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 12),
+                                child: Text(
+                                  titleApi![index],
+                                  style: TextStyle(
+                                      color: Resources.color.hightlight,
+                                      fontSize: 20),
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              Container(
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 8),
+                                child: Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
                                     ),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 12),
-                                  child: Text(
-                                    titleApi![index],
-                                    style: TextStyle(
+                                    const SizedBox(height: 8.0),
+                                    Text(
+                                      "${ratingApi[index]}/10",
+                                      style: TextStyle(
                                         color: Resources.color.hightlight,
-                                        fontSize: 20),
-                                  ),
-                                ),
-                                const SizedBox(height: 8.0),
-                                Container(
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
                                       ),
-                                      const SizedBox(height: 8.0),
-                                      Text(
-                                        "${ratingApi[index]}/10",
-                                        style: TextStyle(
-                                          color: Resources.color.hightlight,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -336,10 +333,10 @@ class HomePage extends GetView<HomeController> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 14, 0, 18),
             child: SizedBox(
-              height: Get.height / 2,
+              height: 600,
               child: ListView.builder(
                 itemCount: totalDataTrending.length,
-                scrollDirection: Axis.vertical,
+                scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final dataImage =
                       controller.nowSoon?.results.map((e) => e.backdropPath);
@@ -353,30 +350,30 @@ class HomePage extends GetView<HomeController> {
                     onTap: () {
                       controller.handleRecentSelection(index);
                       if (kDebugMode) {
-                        // print("object");
                         Get.toNamed('/movies-web');
                       }
                     },
                     child: Column(
                       children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 25),
+                        SizedBox(
                           width: Get.width,
                           height: 530,
-                          decoration: BoxDecoration(
-                              color: Resources.color.hightlight,
-                              borderRadius: BorderRadius.circular(20)),
                           child: Container(
-                            padding: const EdgeInsets.only(top: 10),
+                            decoration: BoxDecoration(
+                                color: Resources.color.hightlight,
+                                borderRadius: BorderRadius.circular(20)),
                             child: Column(
                               children: [
                                 Center(
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.0),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
                                     child: Image.network(
                                       "https://image.tmdb.org/t/p/original${dataArray[index]}",
                                       fit: BoxFit.cover,
-                                      width: 330,
+                                      width: Get.width,
                                       height: 400,
                                     ),
                                   ),
