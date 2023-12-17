@@ -15,7 +15,6 @@ import 'package:demo_mobile/presentation/auth/login/login_binding.dart';
 import 'package:demo_mobile/presentation/auth/login/login_page.dart';
 import 'package:demo_mobile/presentation/web_view/web_binding.dart';
 import 'package:demo_mobile/presentation/web_view/web_page.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:demo_mobile/routes/page_names.dart';
 import 'package:demo_mobile/presentation/splash/splash_page.dart';
@@ -50,7 +49,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.home,
-      page: () => const HomePage(),
+      page: () => HomePage(),
       binding: HomeBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
@@ -111,11 +110,11 @@ class PageRoutes {
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),
-    GetPage(name: PageName.feedback, 
-    page: () => FeedbackPage(),
-    transition: Transition.fadeIn,
-    transitionDuration: const Duration(milliseconds: 500),
-
+    GetPage(
+      name: PageName.feedback,
+      page: () => FeedbackPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 500),
     )
   ];
 }
