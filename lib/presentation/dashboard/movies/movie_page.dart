@@ -65,20 +65,78 @@ class MoviePage extends GetView<MovieController> {
         itemCount: results?.length ?? 0,
         itemBuilder: (context, index) {
           var result = results![index];
-          print("Total data: ${results.length}");
 
           return GestureDetector(
             onTap: () {
-              print("halo");
+              print("clicked");
             },
             child: Container(
               margin: const EdgeInsets.only(bottom: 16),
-              child: Text(
-                result.title ?? 'No Title',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    result.title ?? 'No Title',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    result.genreIds.toString(),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Image.network(
+                    "https://image.tmdb.org/t/p/original/${result.backdropPath}",
+                    fit: BoxFit.cover,
+                    width: Get.width,
+                    height: 400,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    result.overview,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Popularity: ${result.popularity}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Release Date: ${result.releaseDate?.toString() ?? "N/A"}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Vote Average: ${result.voteAverage}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  Divider(color: Resources.color.hightlight),
+                ],
               ),
             ),
           );
