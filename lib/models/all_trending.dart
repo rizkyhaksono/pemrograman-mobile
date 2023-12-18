@@ -1,24 +1,28 @@
+// To parse this JSON data, do
+//
+//     final allTrending = allTrendingFromJson(jsonString);
+
 import 'dart:convert';
 
-Top10Model top10ModelFromJson(String str) =>
-    Top10Model.fromJson(json.decode(str));
+AllTrending allTrendingFromJson(String str) =>
+    AllTrending.fromJson(json.decode(str));
 
-String top10ModelToJson(Top10Model data) => json.encode(data.toJson());
+String allTrendingToJson(AllTrending data) => json.encode(data.toJson());
 
-class Top10Model {
+class AllTrending {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  Top10Model({
+  AllTrending({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory Top10Model.fromJson(Map<String, dynamic> json) => Top10Model(
+  factory AllTrending.fromJson(Map<String, dynamic> json) => AllTrending(
         page: json["page"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
@@ -38,84 +42,109 @@ class Result {
   bool adult;
   String backdropPath;
   int id;
-  String name;
+  String? title;
   OriginalLanguage originalLanguage;
-  String originalName;
+  String? originalTitle;
   String overview;
   String posterPath;
   MediaType mediaType;
   List<int> genreIds;
   double popularity;
-  DateTime firstAirDate;
+  DateTime? releaseDate;
+  bool? video;
   double voteAverage;
   int voteCount;
-  List<String> originCountry;
+  String? name;
+  String? originalName;
+  DateTime? firstAirDate;
+  List<String>? originCountry;
 
   Result({
     required this.adult,
     required this.backdropPath,
     required this.id,
-    required this.name,
+    this.title,
     required this.originalLanguage,
-    required this.originalName,
+    this.originalTitle,
     required this.overview,
     required this.posterPath,
     required this.mediaType,
     required this.genreIds,
     required this.popularity,
-    required this.firstAirDate,
+    this.releaseDate,
+    this.video,
     required this.voteAverage,
     required this.voteCount,
-    required this.originCountry,
+    this.name,
+    this.originalName,
+    this.firstAirDate,
+    this.originCountry,
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         id: json["id"],
-        name: json["name"],
+        title: json["title"],
         originalLanguage:
             originalLanguageValues.map[json["original_language"]]!,
-        originalName: json["original_name"],
+        originalTitle: json["original_title"],
         overview: json["overview"],
         posterPath: json["poster_path"],
         mediaType: mediaTypeValues.map[json["media_type"]]!,
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         popularity: json["popularity"]?.toDouble(),
-        firstAirDate: DateTime.parse(json["first_air_date"]),
+        releaseDate: json["release_date"] == null
+            ? null
+            : DateTime.parse(json["release_date"]),
+        video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
-        originCountry: List<String>.from(json["origin_country"].map((x) => x)),
+        name: json["name"],
+        originalName: json["original_name"],
+        firstAirDate: json["first_air_date"] == null
+            ? null
+            : DateTime.parse(json["first_air_date"]),
+        originCountry: json["origin_country"] == null
+            ? []
+            : List<String>.from(json["origin_country"]!.map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
         "adult": adult,
         "backdrop_path": backdropPath,
         "id": id,
-        "name": name,
+        "title": title,
         "original_language": originalLanguageValues.reverse[originalLanguage],
-        "original_name": originalName,
+        "original_title": originalTitle,
         "overview": overview,
         "poster_path": posterPath,
         "media_type": mediaTypeValues.reverse[mediaType],
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "popularity": popularity,
-        "first_air_date":
-            "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
+        "release_date":
+            "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
+        "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,
-        "origin_country": List<dynamic>.from(originCountry.map((x) => x)),
+        "name": name,
+        "original_name": originalName,
+        "first_air_date":
+            "${firstAirDate!.year.toString().padLeft(4, '0')}-${firstAirDate!.month.toString().padLeft(2, '0')}-${firstAirDate!.day.toString().padLeft(2, '0')}",
+        "origin_country": originCountry == null
+            ? []
+            : List<dynamic>.from(originCountry!.map((x) => x)),
       };
 }
 
-enum MediaType { TV }
+enum MediaType { MOVIE, TV }
 
-final mediaTypeValues = EnumValues({"tv": MediaType.TV});
+final mediaTypeValues =
+    EnumValues({"movie": MediaType.MOVIE, "tv": MediaType.TV});
 
-enum OriginalLanguage { EN, JA, KO, DE }
+enum OriginalLanguage { EN, JA, KO }
 
 final originalLanguageValues = EnumValues({
-  "de": OriginalLanguage.DE,
   "en": OriginalLanguage.EN,
   "ja": OriginalLanguage.JA,
   "ko": OriginalLanguage.KO

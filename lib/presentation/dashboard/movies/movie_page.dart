@@ -1,236 +1,88 @@
+import 'package:demo_mobile/models/all_trending.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoviePage extends GetView<MovieController> {
-  const MoviePage({super.key});
+  MoviePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final totalData = controller.upSoon?.results.map((e) => e.backdropPath);
-    final totalDataMovies = totalData?.toList();
-
     return Scaffold(
       backgroundColor: Resources.color.background,
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(
-          top: 32,
-          left: 20,
-          right: 20,
-        ),
-        children: <Widget>[
-          Row(
-            children: [
-              Text(
-                "Movies Latest",
-                style: TextStyle(
-                  fontFamily: Resources.font.primaryFont,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 32,
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-            child: SizedBox(
-              height: 650,
-              child: ListView.builder(
-                itemCount: totalDataMovies?.length ?? 0,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  final dataImage = controller.upSoon?.results
-                          .map((e) => e.backdropPath)
-                          .toList() ??
-                      [];
-                  final dataArray = dataImage.toList();
-                  final titleApi =
-                      controller.upSoon?.results.map((e) => e.title).toList() ??
-                          [];
-                  final ratingApi = controller.upSoon?.results
-                          .map((e) => e.voteAverage)
-                          .toList() ??
-                      [];
-
-                  if (index < dataArray.length &&
-                      index < titleApi.length &&
-                      index < ratingApi.length) {
-                    return GestureDetector(
-                      onTap: () {
-                        Get.toNamed('/movies-web');
-                        if (kDebugMode) {
-                          print("clicked");
-                        }
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 25),
-                            width: Get.width,
-                            height: 530,
-                            decoration: BoxDecoration(
-                              color: Resources.color.hightlight,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Container(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      child: Image.network(
-                                        "https://image.tmdb.org/t/p/original${dataArray[index]}",
-                                        fit: BoxFit.cover,
-                                        width: 330,
-                                        height: 400,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(0, 8, 0, 2),
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 12),
-                                    child: Text(
-                                      titleApi[index],
-                                      style: TextStyle(
-                                        color: Resources.color.hightlight,
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Container(
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 8),
-                                    child: Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          color: Colors.yellow,
-                                        ),
-                                        const SizedBox(height: 8.0),
-                                        Text(
-                                          "${ratingApi[index]}/10",
-                                          style: TextStyle(
-                                            color: Resources.color.hightlight,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return Container(
-                      child: Text("No Data"),
-                    );
-                  }
-                },
-              ),
-            ),
-          ),
-        ],
+      body: Obx(
+        () {
+          if (controller.isLoading.isTrue) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (controller.hasError.isTrue) {
+            return Center(child: Text("Error: ${controller.errorMessage}"));
+          } else if (controller.hasData.isTrue) {
+            return buildMoviePageContent(controller);
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }
-}
 
-class MovieWidget extends StatelessWidget {
-  final String imagePath;
-  final String title;
-  final double rating;
-
-  const MovieWidget({
-    required this.imagePath,
-    required this.title,
-    required this.rating,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: Get.width,
-      height: 530,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Resources.color.hightlight,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [
-            Center(
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20.0),
-                  topRight: Radius.circular(20.0),
-                ),
-                child: Image.network(
-                  "https://image.tmdb.org/t/p/original$imagePath",
-                  fit: BoxFit.cover,
-                  width: Get.width,
-                  height: 400,
-                ),
+  Widget buildMoviePageContent(MovieController controller) {
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.only(
+        top: 32,
+        left: 20,
+        right: 20,
+      ),
+      children: <Widget>[
+        if (controller.hasData.isTrue)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Trending',
+                style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins",
+                    color: Colors.white),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              const SizedBox(height: 16),
+              buildMovieItem(controller.allTrending?.results),
+            ],
+          ),
+      ],
+    );
+  }
+
+  Widget buildMovieItem(List<Result>? results) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: results?.length ?? 0,
+        itemBuilder: (context, index) {
+          var result = results![index];
+          print("Total data: ${results.length}");
+
+          return GestureDetector(
+            onTap: () {
+              print("halo");
+            },
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 16),
               child: Text(
-                title,
-                style:
-                    TextStyle(color: Resources.color.hightlight, fontSize: 20),
+                result.title ?? 'No Title',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            const SizedBox(height: 8.0),
-            Container(
-              width: 120,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    color: Colors.yellow,
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    "$rating/10",
-                    style: TextStyle(color: Resources.color.hightlight),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

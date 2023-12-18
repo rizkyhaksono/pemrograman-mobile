@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:demo_mobile/models/movie_discover.dart' as MovieDiscoverModel;
 import 'package:demo_mobile/models/tv_discover.dart' as TVDiscoverModel;
-import 'package:demo_mobile/models/nowplaying_movie.dart' as NowPlayingModel;
-import 'package:demo_mobile/models/toprated_movie.dart' as TopRatedModel;
 import 'package:demo_mobile/utils/apis/api.dart';
 import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
@@ -25,8 +23,6 @@ class HomeController extends GetxController {
   RxInt selectedRecent = 0.obs;
   var isLoading = false.obs;
 
-  NowPlayingModel.NowPlayModel? nowSoon;
-  TopRatedModel.Top10Model? trendingMovie;
   MovieDiscoverModel.MovieDiscover? movieDiscover;
   TVDiscoverModel.TvDiscover? tvDiscover;
 

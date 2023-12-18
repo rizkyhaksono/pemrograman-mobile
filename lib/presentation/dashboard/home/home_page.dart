@@ -226,7 +226,7 @@ Widget buildMovieList(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 25, right: 40),
-                  width: Get.width,
+                  width: Get.width / 1.2,
                   height: 530,
                   decoration: BoxDecoration(
                     color: Resources.color.hightlight,
@@ -251,10 +251,6 @@ Widget buildMovieList(
                       Container(
                         margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
                         height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 12,
@@ -262,33 +258,31 @@ Widget buildMovieList(
                         child: Text(
                           title,
                           style: TextStyle(
-                            color: Resources.color.hightlight,
-                            fontSize: 20,
+                            color: Resources.color.background,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
                       const SizedBox(height: 8.0),
                       Container(
-                        width: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 8,
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
-                              color: Colors.yellow,
+                              color: Resources.color.background,
                             ),
                             const SizedBox(height: 8.0),
                             Text(
                               rating.toString(),
                               style: TextStyle(
-                                color: Resources.color.hightlight,
+                                color: Resources.color.background,
+                                fontSize: 24,
                               ),
                             ),
                           ],
@@ -325,15 +319,14 @@ Widget buildTvList(
             onTap: () {
               controller.handleRecentSelection(index);
               if (kDebugMode) {
-                // Navigate to the TV details screen, modify this as per your app's navigation.
-                Get.toNamed('/tv-web');
+                Get.toNamed('/movies-web');
               }
             },
             child: Column(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 25, right: 40),
-                  width: Get.width,
+                  width: Get.width / 1.2,
                   height: 530,
                   decoration: BoxDecoration(
                     color: Resources.color.hightlight,
@@ -358,44 +351,31 @@ Widget buildTvList(
                       Container(
                         margin: const EdgeInsets.fromLTRB(0, 8, 0, 2),
                         height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
-                        ),
                         child: Text(
                           title,
                           style: TextStyle(
-                            color: Resources.color.hightlight,
-                            fontSize: 20,
+                            color: Resources.color.background,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 24,
                           ),
                         ),
                       ),
                       const SizedBox(height: 8.0),
-                      Container(
-                        width: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
+                      SizedBox(
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.star,
-                              color: Colors.yellow,
+                              color: Resources.color.background,
                             ),
                             const SizedBox(height: 8.0),
                             Text(
                               rating.toString(),
                               style: TextStyle(
-                                color: Resources.color.hightlight,
+                                color: Resources.color.background,
+                                fontSize: 24,
                               ),
                             ),
                           ],

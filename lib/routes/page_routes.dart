@@ -56,7 +56,7 @@ class PageRoutes {
     ),
     GetPage(
       name: PageName.movies,
-      page: () => const MoviePage(),
+      page: () => MoviePage(),
       binding: MovieBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
