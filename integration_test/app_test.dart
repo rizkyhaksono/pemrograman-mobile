@@ -13,13 +13,15 @@ void main() {
     await tester.pumpWidget(const MainApp());
 
     // Verify that the MainApp widget is rendered.
-    expect(find.byType(const GetMaterialApp() as Type), findsOneWidget);
+    // expect(find.byType(const GetMaterialApp() as Type), findsOneWidget);
+    expect(find.byType(GetMaterialApp), findsOneWidget);
+
 
     // Verify that the initial route is set to the splash page.
     expect(Get.currentRoute, equals(PageName.splash));
 
     // Verify that a widget with the text 'YourAppTitle' is present.
-    expect(find.text('YourAppTitle'), findsOneWidget);
+    expect(find.text('Picvie'), findsOneWidget);
 
     // Add more expectations based on your UI structure.
 
