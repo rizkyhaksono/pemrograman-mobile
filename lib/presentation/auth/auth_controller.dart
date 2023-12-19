@@ -1,5 +1,4 @@
 import 'package:appwrite/appwrite.dart';
-import 'package:demo_mobile/utils/client_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

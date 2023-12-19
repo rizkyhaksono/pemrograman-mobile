@@ -75,6 +75,7 @@ class SignUpPage extends GetView<AuthController> {
                   height: 20,
                 ),
                 TextField(
+                  key: const Key("emailTextFieldKey"),
                   controller: controller.emailController,
                   textAlign: TextAlign.start,
                   style: TextStyle(

@@ -8,10 +8,8 @@ class FavoritePage extends GetView<FavoriteController> {
 
   @override
   Widget build(BuildContext context) {
-    final orientation = MediaQuery.of(context).orientation;
     final size = MediaQuery.of(context).size;
     final height = size.height;
-    final width = size.width;
 
     return Scaffold(
       backgroundColor: Resources.color.background,
