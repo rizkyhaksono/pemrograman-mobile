@@ -19,9 +19,6 @@ enum MovieCategory {
 class HomeController extends GetxController {
   final DatabaseController databaseController = Get.put(DatabaseController());
 
-  final http.Client client;
-  HomeController({required this.client});
-
   RxInt selectedIndex = 0.obs;
   RxInt selectedRecent = 0.obs;
   var isLoading = false.obs;
