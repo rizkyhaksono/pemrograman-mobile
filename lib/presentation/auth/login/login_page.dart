@@ -1,10 +1,14 @@
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/account_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends GetView<AuthController> {
-  const LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
+
+  final AccountController accountController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -78,35 +82,50 @@ class LoginPage extends GetView<AuthController> {
                 const SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: controller.passwordController,
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    color: Resources.color.hightlight,
-                    fontSize: 13,
-                    fontFamily: Resources.font.primaryFont,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                      color: const Color.fromARGB(255, 175, 162, 135),
-                      fontSize: 15,
+                Obx(
+                  () => TextField(
+                    controller: controller.passwordController,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Resources.color.hightlight,
+                      fontSize: 13,
                       fontFamily: Resources.font.primaryFont,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                     ),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(255, 134, 128, 115),
+                    obscureText: controller.showPassword.value,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      labelStyle: TextStyle(
+                        color: const Color.fromARGB(255, 175, 162, 135),
+                        fontSize: 15,
+                        fontFamily: Resources.font.primaryFont,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Resources.color.hightlight,
+                      enabledBorder: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Color.fromARGB(255, 134, 128, 115),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Resources.color.hightlight,
+                        ),
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          controller.showPassword.value
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Resources.color.hightlight,
+                        ),
+                        onPressed: () {
+                          controller.toggleObscureText();
+                        },
                       ),
                     ),
                   ),
@@ -119,7 +138,7 @@ class LoginPage extends GetView<AuthController> {
                     return ElevatedButton(
                       onPressed: controller.isLoading.value
                           ? null
-                          : () {
+                          : () async {
                               controller.loginUser(
                                 controller.emailController.text,
                                 controller.passwordController.text,
@@ -134,10 +153,10 @@ class LoginPage extends GetView<AuthController> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          // Text or any other content
                           Visibility(
                             visible: !controller.isLoading.value,
                             child: Container(
+                              height: 50,
                               alignment: Alignment.center,
                               child: Text(
                                 'Sign In',
@@ -150,13 +169,11 @@ class LoginPage extends GetView<AuthController> {
                               ),
                             ),
                           ),
-                          // Loading Indicator
                           Visibility(
                             visible: controller.isLoading.value,
                             child: Center(
                               child: CircularProgressIndicator(
-                                color: Resources
-                                    .color.hightlight, // Adjust color as needed
+                                color: Resources.color.hightlight,
                               ),
                             ),
                           ),
@@ -204,9 +221,9 @@ class LoginPage extends GetView<AuthController> {
                 ),
                 InkWell(
                   onTap: () {
-                    // widget.controller.animateToPage(1,
-                    //     duration: const Duration(milliseconds: 500),
-                    //     curve: Curves.ease);
+                    if (kDebugMode) {
+                      print("forget password");
+                    }
                   },
                   child: Center(
                     child: Text(

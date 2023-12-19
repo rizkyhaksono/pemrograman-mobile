@@ -4,6 +4,7 @@ import 'package:demo_mobile/components/profile_avatar.dart';
 import 'package:demo_mobile/presentation/auth/auth_controller.dart';
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/database_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class ProfilePage extends GetView<ProfileController> {
   final ImagePicker? imagePicker = ImagePicker();
 
   final AuthController _authController = Get.put(AuthController());
+  final DatabaseController databaseController = Get.find<DatabaseController>();
 
   ProfilePage({
     super.key,
@@ -39,7 +41,7 @@ class ProfilePage extends GetView<ProfileController> {
                 fontFamily: Resources.font.primaryFont,
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
-                fontSize: 32,
+                fontSize: 28,
               ),
             ),
           ),
@@ -52,15 +54,19 @@ class ProfilePage extends GetView<ProfileController> {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            'Rizky Haksono',
-            style: TextStyle(
-              color: Resources.color.hightlight,
-              fontSize: 24.0,
-              fontFamily: Resources.font.primaryFont,
-              fontWeight: FontWeight.w600,
+          Obx(
+            () => Text(
+              databaseController.documents.isNotEmpty
+                  ? databaseController.documents[0].data['name'] ?? ''
+                  : '',
+              style: TextStyle(
+                color: Resources.color.hightlight,
+                fontSize: 24.0,
+                fontFamily: Resources.font.primaryFont,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           Container(
             padding: const EdgeInsets.only(
@@ -71,9 +77,7 @@ class ProfilePage extends GetView<ProfileController> {
             height: 70,
             child: ElevatedButton(
               onPressed: () {
-                if (kDebugMode) {
-                  print("edit profile");
-                }
+                Get.toNamed("/edit_profile");
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Resources.color.hightlight,
@@ -102,7 +106,9 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.settings,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("setting");
+                  if (kDebugMode) {
+                    print("setting");
+                  }
                 },
               ),
               ProfileMenuWidget(
@@ -118,7 +124,20 @@ class ProfilePage extends GetView<ProfileController> {
                 icon: Icons.info_rounded,
                 textColor: Resources.color.hightlight,
                 onPress: () {
-                  print("info");
+                  if (kDebugMode) {
+                    print("info");
+                  }
+                },
+              ),
+              ProfileMenuWidget(
+                title: "Feedback",
+                icon: Icons.comment_bank,
+                textColor: Resources.color.hightlight,
+                onPress: () {
+                  if (kDebugMode) {
+                    print("info");
+                  }
+                  Get.toNamed('/feedback');
                 },
               ),
               ProfileMenuWidget(
@@ -133,27 +152,6 @@ class ProfilePage extends GetView<ProfileController> {
           ),
           const SizedBox(
             height: 20,
-          ),
-          Container(
-            width: Get.width,
-            height: 100.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "This app made by Rizky Haksono",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: Resources.font.primaryFont,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
           ),
         ],
       ),

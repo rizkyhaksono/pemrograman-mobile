@@ -1,21 +1,17 @@
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FavoritePage extends GetView<FavoriteController> {
   FavoritePage({super.key});
 
-  dynamic orientation, size, height, width;
-
   @override
   Widget build(BuildContext context) {
-    orientation = MediaQuery.of(context).orientation;
-
-    size = MediaQuery.of(context).size;
-    height = size.height;
-    width = size.width;
+    final orientation = MediaQuery.of(context).orientation;
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
 
     return Scaffold(
       backgroundColor: Resources.color.background,

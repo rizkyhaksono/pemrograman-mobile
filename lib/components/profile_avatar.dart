@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:demo_mobile/presentation/dashboard/profile/profile_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
+import 'package:demo_mobile/utils/storage_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class ProfileAvatar extends StatelessWidget {
   final ImagePicker imagePicker = ImagePicker();
 
   final ProfileController _profileController = Get.put(ProfileController());
+  final StorageController storageController = Get.put(StorageController());
 
   ProfileAvatar({
     super.key,
@@ -30,10 +32,12 @@ class ProfileAvatar extends StatelessWidget {
             String imagePath = _profileController.profilePicPath.value;
 
             ImageProvider<Object>? backgroundImage;
+            backgroundImage = FileImage(File(imagePath));
+            storageController.storeImage(File(imagePath));
+
             if (isImagePathAvailable) {
-              backgroundImage = FileImage(File(imagePath));
             } else {
-              backgroundImage = AssetImage("assets/images/profile.jpg");
+              backgroundImage = const AssetImage("assets/images/profile.jpg");
             }
 
             return CircleAvatar(

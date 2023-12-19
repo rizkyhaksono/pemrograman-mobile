@@ -1,4 +1,7 @@
+import 'package:appwrite/appwrite.dart';
+import 'package:demo_mobile/utils/client_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,11 +10,15 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final SharedPreferences _prefs = Get.find<SharedPreferences>();
 
+  Account? account;
+
   RxBool isLoading = false.obs;
   RxBool isLoggedIn = false.obs;
-  RxBool obscureText = true.obs;
+  RxBool showPassword = true.obs;
 
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   @override
@@ -32,7 +39,10 @@ class AuthController extends GetxController {
   }
 
   void toggleObscureText() {
-    obscureText.value = !obscureText.value;
+    showPassword.value = !showPassword.value;
+    if (kDebugMode) {
+      print("After toggle: ${showPassword.value}");
+    }
   }
 
   Future<void> registerUser(String email, String password) async {

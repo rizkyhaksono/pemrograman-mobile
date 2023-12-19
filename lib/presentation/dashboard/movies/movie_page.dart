@@ -1,143 +1,146 @@
+import 'package:demo_mobile/models/all_trending.dart';
 import 'package:demo_mobile/presentation/dashboard/movies/movie_controller.dart';
 import 'package:demo_mobile/themes/resources.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MoviePage extends GetView<MovieController> {
-  MoviePage({super.key});
+  MoviePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final totalData = controller.upSoon!.results.map((e) => e.backdropPath);
-    final totalDataMovies = totalData.toList();
-
     return Scaffold(
       backgroundColor: Resources.color.background,
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(
-          top: 32,
-          left: 20,
-          right: 20,
-        ),
-        children: <Widget>[
-          Row(
+      body: Obx(
+        () {
+          if (controller.isLoading.isTrue) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (controller.hasError.isTrue) {
+            return Center(child: Text("Error: ${controller.errorMessage}"));
+          } else if (controller.hasData.isTrue) {
+            return buildMoviePageContent(controller);
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
+      ),
+    );
+  }
+
+  Widget buildMoviePageContent(MovieController controller) {
+    return ListView(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.only(
+        top: 32,
+        left: 20,
+        right: 20,
+      ),
+      children: <Widget>[
+        if (controller.hasData.isTrue)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Movies Latest",
+              const Text(
+                'Trending',
                 style: TextStyle(
-                  fontFamily: Resources.font.primaryFont,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 32,
-                ),
-              )
+                    fontSize: 32,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Poppins",
+                    color: Colors.white),
+              ),
+              const SizedBox(height: 16),
+              buildMovieItem(controller.allTrending?.results),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-            child: SizedBox(
-              height: 650,
-              child: ListView.builder(
-                itemCount: totalDataMovies.length,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  final dataImage =
-                      controller.upSoon!.results.map((e) => e.backdropPath);
-                  final dataArray = dataImage.toList();
-                  final titleApi =
-                      controller.upSoon!.results.map((e) => e.title).toList();
+      ],
+    );
+  }
 
-                  final ratingApi = controller.upSoon!.results
-                      .map((e) => e.voteAverage)
-                      .toList();
+  Widget buildMovieItem(List<Result>? results) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: results?.length ?? 0,
+        itemBuilder: (context, index) {
+          var result = results![index];
 
-                  return GestureDetector(
-                    onTap: () {
-                      // Get.toNamed('/movie_detail');
-                      Get.toNamed('/movies-web');
-                      if (kDebugMode) {
-                        print("clicked");
-                      }
-                    },
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 25),
-                          width: Get.width,
-                          height: 530,
-                          decoration: BoxDecoration(
-                              color: Resources.color.hightlight,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Container(
-                            padding: EdgeInsets.only(top: 10),
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    child: Image.network(
-                                      "https://image.tmdb.org/t/p/original${dataArray[index]}",
-                                      fit: BoxFit.cover,
-                                      width: 330,
-                                      height: 400,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 8, 0, 2),
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 12),
-                                  child: Text(
-                                    titleApi[index],
-                                    style: TextStyle(
-                                        color: Resources.color.hightlight,
-                                        fontSize: 20),
-                                  ),
-                                ),
-                                SizedBox(height: 8.0),
-                                Container(
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: Colors.yellow,
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      Text(
-                                        ratingApi[index].toString() + "/10",
-                                        style: TextStyle(
-                                          color: Resources.color.hightlight,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+          return GestureDetector(
+            onTap: () {
+              print("clicked");
+            },
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    result.title ?? 'No Title',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Resources.color.hightlight,
                     ),
-                  );
-                },
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    result.genreIds.toString(),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Image.network(
+                    "https://image.tmdb.org/t/p/original/${result.backdropPath}",
+                    fit: BoxFit.cover,
+                    width: Get.width,
+                    height: 400,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    result.overview,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Popularity: ${result.popularity}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Release Date: ${result.releaseDate?.toString() ?? "N/A"}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Vote Average: ${result.voteAverage}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Resources.color.hightlight,
+                    ),
+                  ),
+                  Divider(color: Resources.color.hightlight),
+                ],
               ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:demo_mobile/utils/storage_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +13,7 @@ class ProfileController extends GetxController {
 
   RxBool isProficPicPathSet = false.obs;
   RxString profilePicPath = "".obs;
+  RxBool isImageUploaded = false.obs;
 
   File? pickedFile;
   final ImagePicker imagePicker = ImagePicker();
@@ -20,6 +21,10 @@ class ProfileController extends GetxController {
   void setProfileImagePath(String path) {
     profilePicPath.value = path;
     isProficPicPathSet.value = true;
+  }
+
+  void setImageUploaded(bool uploaded) {
+    isImageUploaded.value = uploaded;
   }
 
   @override
@@ -50,12 +55,17 @@ class ProfileController extends GetxController {
       return;
     } else {
       final Directory appDirectory = await getApplicationCacheDirectory();
-      final String fileName = 'profile_image.png';
+      const String fileName = 'profile_image.png';
+
+      await StorageController().storeImage(File(pickedImage.path));
+      final fileId = pickedImage.path.split('/').last;
+      setProfileImagePath(fileId);
+      setStoredImagePath(localImage: fileId);
 
       setProfileImagePath(File(pickedImage.path).path);
       setStoredImagePath(
           localImage: await File(pickedImage.path)
-              .copy('${appDirectory.path}/${fileName}'));
+              .copy('${appDirectory.path}/$fileName'));
 
       Get.back();
       Get.snackbar(
@@ -67,8 +77,8 @@ class ProfileController extends GetxController {
     }
   }
 
-  var githubRizky = WebViewController()
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    ..setBackgroundColor(const Color(0x00000000))
-    ..loadRequest(Uri.parse('https://github.com/rizkyhaksono'));
+  // var githubRizky = WebViewController()
+  //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
+  //   ..setBackgroundColor(const Color(0x00000000))
+  //   ..loadRequest(Uri.parse('https://github.com/rizkyhaksono'));
 }

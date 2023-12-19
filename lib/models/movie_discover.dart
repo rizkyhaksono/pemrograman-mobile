@@ -1,31 +1,28 @@
 // To parse this JSON data, do
 //
-//     final nowPlayModel = nowPlayModelFromJson(jsonString);
+//     final movieDiscover = movieDiscoverFromJson(jsonString);
 
 import 'dart:convert';
 
-NowPlayModel nowPlayModelFromJson(String str) =>
-    NowPlayModel.fromJson(json.decode(str));
+MovieDiscover movieDiscoverFromJson(String str) =>
+    MovieDiscover.fromJson(json.decode(str));
 
-String nowPlayModelToJson(NowPlayModel data) => json.encode(data.toJson());
+String movieDiscoverToJson(MovieDiscover data) => json.encode(data.toJson());
 
-class NowPlayModel {
-  Dates dates;
+class MovieDiscover {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  NowPlayModel({
-    required this.dates,
+  MovieDiscover({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory NowPlayModel.fromJson(Map<String, dynamic> json) => NowPlayModel(
-        dates: Dates.fromJson(json["dates"]),
+  factory MovieDiscover.fromJson(Map<String, dynamic> json) => MovieDiscover(
         page: json["page"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
@@ -34,7 +31,6 @@ class NowPlayModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "dates": dates.toJson(),
         "page": page,
         "results": List<dynamic>.from(results.map((x) => x.toJson())),
         "total_pages": totalPages,
@@ -42,34 +38,12 @@ class NowPlayModel {
       };
 }
 
-class Dates {
-  DateTime maximum;
-  DateTime minimum;
-
-  Dates({
-    required this.maximum,
-    required this.minimum,
-  });
-
-  factory Dates.fromJson(Map<String, dynamic> json) => Dates(
-        maximum: DateTime.parse(json["maximum"]),
-        minimum: DateTime.parse(json["minimum"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "maximum":
-            "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
-        "minimum":
-            "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
-      };
-}
-
 class Result {
   bool adult;
-  String backdropPath;
+  String? backdropPath;
   List<int> genreIds;
   int id;
-  String originalLanguage;
+  OriginalLanguage originalLanguage;
   String originalTitle;
   String overview;
   double popularity;
@@ -102,7 +76,8 @@ class Result {
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
-        originalLanguage: json["original_language"],
+        originalLanguage:
+            originalLanguageValues.map[json["original_language"]]!,
         originalTitle: json["original_title"],
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
@@ -119,7 +94,7 @@ class Result {
         "backdrop_path": backdropPath,
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
-        "original_language": originalLanguage,
+        "original_language": originalLanguageValues.reverse[originalLanguage],
         "original_title": originalTitle,
         "overview": overview,
         "popularity": popularity,
@@ -131,4 +106,25 @@ class Result {
         "vote_average": voteAverage,
         "vote_count": voteCount,
       };
+}
+
+enum OriginalLanguage { EN, FR, KO, NO }
+
+final originalLanguageValues = EnumValues({
+  "en": OriginalLanguage.EN,
+  "fr": OriginalLanguage.FR,
+  "ko": OriginalLanguage.KO,
+  "no": OriginalLanguage.NO
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

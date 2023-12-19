@@ -21,10 +21,8 @@ class _CardRecentState extends State<CardRecent> {
 
   @override
   Widget build(BuildContext context) {
-    // getting the orientation of the app
     orientation = MediaQuery.of(context).orientation;
 
-    // size of the screen
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
