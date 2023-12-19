@@ -44,8 +44,8 @@ class Result {
   List<int> genreIds;
   int id;
   String name;
-  List<OriginCountry> originCountry;
-  OriginalLanguage originalLanguage;
+  List<String> originCountry;
+  String originalLanguage;
   String originalName;
   String overview;
   double popularity;
@@ -75,10 +75,8 @@ class Result {
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         name: json["name"],
-        originCountry: List<OriginCountry>.from(
-            json["origin_country"].map((x) => originCountryValues.map[x]!)),
-        originalLanguage:
-            originalLanguageValues.map[json["original_language"]]!,
+        originCountry: List<String>.from(json["origin_country"].map((x) => x)),
+        originalLanguage: json["original_language"],
         originalName: json["original_name"],
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
@@ -94,9 +92,8 @@ class Result {
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
         "name": name,
-        "origin_country": List<dynamic>.from(
-            originCountry.map((x) => originCountryValues.reverse[x])),
-        "original_language": originalLanguageValues.reverse[originalLanguage],
+        "origin_country": List<dynamic>.from(originCountry.map((x) => x)),
+        "original_language": originalLanguage,
         "original_name": originalName,
         "overview": overview,
         "popularity": popularity,
@@ -104,29 +101,4 @@ class Result {
         "vote_average": voteAverage,
         "vote_count": voteCount,
       };
-}
-
-enum OriginCountry { DE, NO, US }
-
-final originCountryValues = EnumValues(
-    {"DE": OriginCountry.DE, "NO": OriginCountry.NO, "US": OriginCountry.US});
-
-enum OriginalLanguage { DE, EN, NO }
-
-final originalLanguageValues = EnumValues({
-  "de": OriginalLanguage.DE,
-  "en": OriginalLanguage.EN,
-  "no": OriginalLanguage.NO
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

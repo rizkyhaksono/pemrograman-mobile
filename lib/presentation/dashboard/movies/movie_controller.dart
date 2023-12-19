@@ -40,7 +40,7 @@ class MovieController extends GetxController {
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         allTrending = AllTrending.fromJson(result);
-        print(result);
+        // print(result);
         hasData(true);
       } else {
         isLoading(false);

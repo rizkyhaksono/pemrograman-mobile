@@ -59,13 +59,12 @@ class HomeController extends GetxController {
 
   Future<void> getTvDiscover() async {
     try {
-      final response = await http.get(Uri.parse(_buildUrl(
-          "discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc")));
+      final response = await http.get(Uri.parse(
+          "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&api_key=8ee16750c566b88be3d29a700cff3e73"));
+
       if (response.statusCode == 200) {
         tvDiscover =
             TVDiscoverModel.TvDiscover.fromJson(jsonDecode(response.body));
-
-        print(response.body);
       }
     } catch (e) {
       printError(info: "Error fetching TV discover: $e");

@@ -311,9 +311,12 @@ Widget buildTvList(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final tvResult = tvResults?[index];
-          final backdropPath = tvResult?.backdropPath ?? '';
-          final title = tvResult?.name ?? '';
-          final rating = tvResult?.voteAverage ?? '0';
+          if (tvResult == null) {
+            return SizedBox.shrink(); // Skip if tvResult is null
+          }
+          final backdropPath = tvResult.backdropPath ?? '';
+          final title = tvResult.name ?? '';
+          final rating = tvResult.voteAverage ?? '0';
 
           return GestureDetector(
             onTap: () {
