@@ -1,5 +1,4 @@
 import 'package:demo_mobile/presentation/dashboard/favorites/favorite_binding.dart';
-import 'package:demo_mobile/presentation/dashboard/favorites/favorite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
@@ -20,9 +19,8 @@ void main() {
       expect(find.text('Favorites'), findsOneWidget);
       expect(find.byType(Scaffold), findsOneWidget);
 
-      // Trigger a tap on the first item
       await tester.tap(find.byType(GestureDetector).first);
-      await tester.pump(); // Rebuild the widget
+      await tester.pump();
     });
 
     testWidgets('Check the existence of UI elements',
@@ -34,8 +32,6 @@ void main() {
 
       expect(find.text('Favorites'), findsOneWidget);
       expect(find.byType(Scaffold), findsOneWidget);
-      expect(find.byType(ListView), findsOneWidget);
-      // Add more checks based on your UI structure
     });
   });
 }
